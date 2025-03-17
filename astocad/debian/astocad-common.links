@@ -1,0 +1,6 @@
+usr/share/freecad/ThirdPartyLibraries.html usr/share/doc/freecad-doc/ThirdPartyLibraries.html
+usr/share/freecad/Gui usr/lib/freecad/Gui
+usr/share/freecad/Mod usr/lib/freecad/Mod
+usr/share/freecad/Ext usr/lib/freecad/Ext
+usr/share/fonts/truetype/osifont/osifont-italic.ttf usr/share/freecad/Mod/TechDraw/Resources/fonts/osifont-italic.ttf
+usr/share/fonts/truetype/osifont/osifont.ttf usr/share/freecad/Mod/TechDraw/Resources/fonts/osifont-lgpl3fe.ttf

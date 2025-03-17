@@ -1,0 +1,4 @@
+# False positive for pcre3
+embedded-library
+# embedded by openmpi, when removed with chrpath freecad stops working. (#1085509)
+custom-library-search-path RUNPATH /usr/lib/.*/openmpi/lib.*

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+update-alternatives --install /usr/bin/freecad freecad /usr/lib/freecad/bin/freecad-python3 30 \
+                    --slave /usr/bin/freecadcmd freecadcmd /usr/lib/freecad/bin/freecadcmd-python3 \
+                    --slave /usr/lib/freecad/lib freecadlib /usr/lib/freecad-python3/lib
+
+#DEBHELPER#
+
+exit 0

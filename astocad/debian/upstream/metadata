@@ -1,0 +1,8 @@
+---
+Bug-Database: https://github.com/FreeCAD/FreeCAD/issues
+Bug-Submit: https://github.com/FreeCAD/FreeCAD/issues/new
+Repository: https://github.com/FreeCAD/FreeCAD.git
+Repository-Browse: https://github.com/FreeCAD/FreeCAD
+Registry:
+ - Name: SciCrunch
+   Entry: SCR_022535

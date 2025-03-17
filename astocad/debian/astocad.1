@@ -1,0 +1,91 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH FREECAD 1 "March  22, 2019" freecad "Linux User's Manual"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+freecad \- Extensible Open Source CAx program
+.SH SYNOPSIS
+.B freecad
+.RI [ options ] " files"
+.br
+.B freecadcmd
+.RI [ options ] " files"
+.SH DESCRIPTION
+.B FreeCAD
+is an Open Source CAx RAD based on OpenCasCade, Qt and Python. It features 
+some key concepts like macro recording, workbenches, ability to run as a 
+server and dynamically loadable application extensions and it is designed 
+to be platform independent.
+.\" TeX users may be more comfortable with the \fB<whatever>\fP and
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics, 
+.\" respectively.
+.SH USAGE
+\fBfreecad\fR starts with a GUI while \fBfreecadcmd\fR is only a pure command line version that starts a Python interpreter.
+.SH OPTIONS
+These programs follow the usual GNU command line syntax, with long
+options starting with two dashes (`-').
+A summary of the options supported by \fBfreecad\fR is included below.
+.SS "Generic options"
+.TP
+\fB\-c, \-\-console\fR
+Starts in console mode.
+.TP
+\fB\-\-dump\-config\fR
+Dumps configuration.
+.TP
+\fB\-\-get\-config\fR \fIarg\fR
+Prints the value of the requested configuration key.
+.TP
+\fB\-h, \-\-help\fR
+Prints help message.
+.TP
+\fB\-\-response\-file\fR \fIarg\fR
+Can be specified with '@name', too.
+.TP
+\fB\-v, \-\-version\fR
+Prints version string.
+
+.SS "Configuration"
+.TP
+\fB\-l, \-\-write\-log\fR
+Writes a log file to $HOME/.FreeCAD/FreeCAD.log
+.TP
+\fB\-\-log\-file\fR \fIarg\fR
+Unlike --write-log this allows logging to an arbitrary file.
+.TP
+\fB\-M, \-\-module\-path\fR \fIarg\fR
+Additional module paths.
+.TP
+\fB\-P, \-\-python\-path\fR \fIarg\fR
+Additional Python paths.
+.TP
+\fB\-s, \-\-system\-cfg\fR \fIarg\fR
+System config file to load/save system settings.
+.TP
+\fB\-\-single\-instance\fR
+Allow one to run a single instance of the application.
+.TP
+\fB\-t, \-\-run\-test\fR \fIarg\fR
+Test case - or 0 for all.
+.TP
+\fB\-u, \-\-user\-cfg\fR \fIarg\fR
+User config file to load/save user settings.
+.SH SEE ALSO
+To get more information about \fBFreeCAD\fR, please visit \fIhttps://freecad.org\fR
+.SH BUGS
+To report a bug, please visit \fIhttps://github.com/FreeCAD/FreeCAD/issue\fR
+.SH AUTHOR
+This manual page was written by Werner Mayer and Salman Mohammadi <salman@smoha.org>.
