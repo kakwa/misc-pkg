@@ -1,0 +1,15 @@
+Description: Do not include binary examples excluded via d/copyright
+Author: Anton Gladky <gladk@debian.org>
+Last-Update: 2018-06-10
+Forwarded: not-needed
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -94,7 +94,6 @@
+ SetGlobalCompilerAndLinkerSettings()
+ 
+ add_subdirectory(src)
+-add_subdirectory(data)
+ 
+ BuildAndInstallDesignerPlugin()
+ 

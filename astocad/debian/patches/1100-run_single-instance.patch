@@ -1,0 +1,23 @@
+Description: Change XDG desktop entry to only run single instance of FreeCAD.
+ This ensure invoking it to open different files only start the
+ program once, and load new files into the already running instance.
+
+ Related to https://bugs.debian.org/1029846 and
+ https://github.com/FreeCAD/FreeCAD/commit/c7a21ecbeecefe7c2dfc9e950b3d6bb42351d476 .
+
+ Partly applied upstream.  Arguments applied, program name change is not.
+Author: Håvard Flaget Aasen <haavard_aasen@yahoo.no>
+Forwarded: https://github.com/FreeCAD/FreeCAD/pull/9855
+Last-Update: 2024-12-21 (tobi@debian.org)
+---
+--- a/src/XDGData/org.freecad.FreeCAD.desktop
++++ b/src/XDGData/org.freecad.FreeCAD.desktop
+@@ -14,7 +14,7 @@
+ GenericName[ko]=CAD 응용프로그램
+ GenericName[pl]=Aplikacja CAD
+ GenericName[ru]=Система автоматизированного проектирования
+-Exec=FreeCAD - --single-instance %F
++Exec=/usr/bin/freecad - --single-instance %F
+ Terminal=false
+ Type=Application
+ Icon=org.freecad.FreeCAD

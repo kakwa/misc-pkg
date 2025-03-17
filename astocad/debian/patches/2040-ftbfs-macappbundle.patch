@@ -1,0 +1,16 @@
+Description: Do not cmake add_subdirectory on removed directory.
+ Avoids a FTBFS.
+Author: Tobias Frost <tobi@debian.org>
+Forwarded: not-needed, Debian specific.
+Last-Update: 2023-12-09
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -19,5 +19,5 @@
+ endif(BUILD_TEMPLATE)
+ 
+ # "if" clause moved into local CMakeLists.txt file to support Conda and Homebrew builds
+-add_subdirectory(MacAppBundle)
++#add_subdirectory(MacAppBundle)
+ 

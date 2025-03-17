@@ -1,0 +1,20 @@
+Description: exclude ply from build-sources, use packaged version
+Author: Anton Gladky <gladk@debian.org>, Sebastian Hoogen <sebastian@hoogen.de>
+Forwarded: not-needed
+Last-Update: 2013-09-25
+
+--- a/src/Mod/OpenSCAD/CMakeLists.txt
++++ b/src/Mod/OpenSCAD/CMakeLists.txt
+@@ -88,12 +88,6 @@
+ 
+ INSTALL(
+     FILES
+-        ${ply_SRCS}
+-    DESTINATION
+-        Mod/OpenSCAD/ply
+-)
+-INSTALL(
+-    FILES
+         ${OpenSCAD_SRCS}
+         ${OpenSCAD_QRC_SRCS}
+     DESTINATION

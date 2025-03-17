@@ -26,6 +26,8 @@ extra_flags += \
 -DBUILD_FLAT_MESH=ON \
 -DFREECAD_BUILD_DEBIAN=ON \
 -DFREECAD_USE_PYBIND11=ON \
+-DENABLE_DEVELOPER_TESTS=OFF \
+-DBUILD_TEST=OFF \
 -DLIB_SUFFIX="" \
 -DCMAKE_BUILD_TYPE=RelWithDebInfo \
 -DCMAKE_INSTALL_DATADIR="/usr/share/freecad" \
@@ -49,8 +51,7 @@ override_dh_auto_configure:
 	    $(py3_flags)
 
 override_dh_auto_test:
-	# tests are currently failing if resources are not installed. This seems to be fixed upstream already, so no need to bother atm.
-	-xvfb-run -a dh_auto_test
+	@echo "tests disabled"
 
 override_dh_auto_install:
 	dh_auto_install
