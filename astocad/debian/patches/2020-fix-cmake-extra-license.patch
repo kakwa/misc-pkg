@@ -1,0 +1,16 @@
+Description: Don't include extra license file in package
+Author: Kurt Kremitzki <kkremitzki@debian.org>
+Last-Update: 2018-06-13
+Forwarded: not-needed
+
+--- a/src/Mod/Idf/CMakeLists.txt
++++ b/src/Mod/Idf/CMakeLists.txt
+@@ -6,7 +6,7 @@
+ SOURCE_GROUP("" FILES ${Idf_SRCS})
+ 
+ SET(IdfLibs_SRCS
+-    Idflibs/License.txt
++    #Idflibs/License.txt
+     Idflibs/0603_SMD.stp
+     Idflibs/0805_SMD.stp
+     Idflibs/1206_SMD.stp

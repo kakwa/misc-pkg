@@ -1,0 +1,6 @@
+1100-run_single-instance.patch
+2000-do_not_install_binary_examples.patch
+2010-exclude_ply.patch
+2020-fix-cmake-extra-license.patch
+2040-ftbfs-macappbundle.patch
+1110-GL_MULTISAMPLE.patch
