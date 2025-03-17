@@ -16,10 +16,7 @@ Pakste
    :width: 160px
    :align: left
 
-
-
-A Makefile-based packaging framework for building DEB and RPM package repositories leveraging Github Actions & Github Pages.
-
+Pakste: a ``deb``/``rpm`` packaging & repo publishing toolkit leveraging Github Actions & Github Pages.
 
 .. list-table::
    :header-rows: 0
