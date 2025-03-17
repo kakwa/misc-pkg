@@ -1,0 +1,43 @@
+#!/bin/dash
+# autopkgtest check
+# (C) 2014 Anton Gladky <gladk@debian.org>
+
+set -e
+
+export FREECAD_USER_HOME="$AUTOPKGTEST_TMP"
+
+WORKDIR=$(mktemp -d)
+trap "rm -rf $WORKDIR" 0 INT QUIT ABRT PIPE TERM
+cd $WORKDIR
+
+
+# list of tests can be extraced with the FreeCAD python command: (Reference: https://wiki.freecad.org/Testing/de#Get_a_list_of_all_top-level_test_modules)
+# FreeCAD.__unit_test__
+# List of all tests:
+tests_ok="TestSpreadsheet BaseTests UnitTests Document Metadata UnicodeTests TestPythonSyntax TestPartDesignApp TestDraft TestTechDrawApp MeshTestsApp TestSurfaceApp TestSketcherApp TestFemApp TestAddonManagerApp TestPartApp TestArch"
+
+# temporarily dropped for FreeCAD 1.0 - TestPathApp
+
+tests_flaky=""
+# Marking TestFemApp flaky for now
+tests_flaky="TestFemApp TestArch"
+if dpkg-architecture -e i386 || dpkg-architecture -e s390x ; then
+ tests_flaky="$tests_flaky TestPathApp"
+fi
+
+for t in $tests_ok
+do
+  for x in $tests_flaky ; do
+    if [ "$x" = "$t" ] ; then
+      t=""
+      break
+    fi
+  done
+  if [ -z "$t" ] ; then
+    echo "### RUNNING FLAKY TEST $x BUT IGNORING RESULT ###"
+    freecadcmd -c -t $t || echo "FLAKY TEST $x FAILED."
+  else
+    echo "### Running CLI Test $t ### "
+    freecadcmd -c -t $t
+  fi
+done

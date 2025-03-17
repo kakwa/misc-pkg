@@ -1,0 +1,4 @@
+usr/share/freecad/share/applications/* usr/share/applications
+usr/share/freecad/share/metainfo/* usr/share/metainfo
+usr/share/freecad/share/mime/* usr/share/mime
+src/Tools/fcinfo usr/bin

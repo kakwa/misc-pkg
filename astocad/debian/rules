@@ -1,0 +1,71 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
+CFLAGS+=$(CPPFLAGS)
+CXXFLAGS+=$(CPPFLAGS)
+
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+# architectures with support for QTWebEngine
+with_qt_webengine = amd64 arm64 armhf i386 mips64el
+ifneq (,$(filter $(DEB_TARGET_ARCH),$(with_qt_webengine)))
+  build_web := On
+else
+  build_web := Off
+endif
+
+py3ver = $(shell py3versions -d -v | tr -d .)
+ifeq (1,$(shell expr ${py3ver} \< 38 ))
+    py3ver := $(py3ver)m
+endif
+
+extra_flags += \
+-DBUILD_QT5=ON \
+-DBUILD_FLAT_MESH=ON \
+-DFREECAD_BUILD_DEBIAN=ON \
+-DFREECAD_USE_PYBIND11=ON \
+-DLIB_SUFFIX="" \
+-DCMAKE_BUILD_TYPE=RelWithDebInfo \
+-DCMAKE_INSTALL_DATADIR="/usr/share/freecad" \
+-DCMAKE_INSTALL_DOCDIR="/usr/share/doc/freecad-doc" \
+-DCMAKE_INSTALL_PREFIX="/usr/share/freecad" \
+-DPYTHON_CONFIG_SUFFIX=".cpython-$(py3ver)-$(DEB_HOST_MULTIARCH)" \
+-DBUILD_WEB="$(build_web)" \
+-DBUILD_ASSEMBLY="Off"
+
+py3_flags = \
+-DPYTHON_EXECUTABLE="/usr/bin/python3" \
+-DCMAKE_INSTALL_LIBDIR="/usr/lib/freecad-python3/lib"
+
+
+%:
+	dh $@ --with python3
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+	    $(extra_flags) \
+	    $(py3_flags)
+
+override_dh_auto_test:
+	# tests are currently failing if resources are not installed. This seems to be fixed upstream already, so no need to bother atm.
+	-xvfb-run -a dh_auto_test
+
+override_dh_auto_install:
+	dh_auto_install
+	mv debian/tmp/usr/share/freecad/bin/FreeCADCmd \
+	    debian/tmp/usr/share/freecad/bin/FreeCADCmd-Python3
+	mv debian/tmp/usr/share/freecad/bin/FreeCAD \
+	    debian/tmp/usr/share/freecad/bin/FreeCAD-Python3
+	rm debian/tmp/usr/share/freecad/Mod/TechDraw/Resources/fonts/osifont-lgpl3fe.ttf
+	rm debian/tmp/usr/share/freecad/Mod/TechDraw/Resources/fonts/osifont-italic.ttf
+	rm debian/tmp/usr/share/freecad/Mod/TechDraw/Resources/fonts/osifont.license
+
+override_dh_installexamples:
+
+override_dh_strip_nondeterminism:
+	dh_strip_nondeterminism -X data/corrupted_metadata.zip
+
+override_dh_missing:
+	dh_missing --list-missing

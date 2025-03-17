@@ -1,0 +1,8 @@
+usr/share/doc/freecad-doc/ThirdPartyLibraries.html usr/share/freecad
+usr/share/freecad/Mod/*
+usr/share/freecad/Gui/*
+usr/share/freecad/Ext/*
+usr/share/freecad/share/icons/* usr/share/icons
+usr/share/freecad/share/thumbnailers/* usr/share/thumbnailers
+usr/share/freecad/3Dconnexion/*
+data/examples usr/share/freecad/examples
