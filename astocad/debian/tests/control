@@ -1,3 +1,0 @@
-Tests: freecadtest
-Depends: freecad, xvfb, xauth
-Restrictions: allow-stderr
