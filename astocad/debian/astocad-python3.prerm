@@ -4,7 +4,7 @@ set -e
 
 case "$1" in
   remove|deconfigure)
-    update-alternatives --remove freecad /usr/lib/freecad/bin/freecad-python3
+    update-alternatives --remove astocad /usr/lib/freecad/bin/freecad-python3
     ;;
 
   upgrade|failed-upgrade)
