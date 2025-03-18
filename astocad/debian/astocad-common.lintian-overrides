@@ -9,4 +9,4 @@ font-outside-font-dir
 broken-zip [usr/share/freecad/Mod/AddonManager/AddonManagerTest/data/corrupted_metadata.zip]
 
 # It is not spare.
-spare-manual-page [usr/share/man/man1/freecad.1.gz]
+spare-manual-page [usr/share/man/man1/astocad.1.gz]
