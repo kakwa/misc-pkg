@@ -2,9 +2,9 @@
 
 set -e
 
-update-alternatives --install /usr/bin/freecad freecad /usr/lib/freecad/bin/freecad-python3 30 \
-                    --slave /usr/bin/freecadcmd freecadcmd /usr/lib/freecad/bin/freecadcmd-python3 \
-                    --slave /usr/lib/freecad/lib freecadlib /usr/lib/freecad-python3/lib
+update-alternatives --install /usr/bin/astocad astocad /usr/lib/freecad/bin/freecad-python3 30 \
+                    --slave /usr/bin/astocadcmd astocadcmd /usr/lib/freecad/bin/freecadcmd-python3 \
+                    --slave /usr/lib/astocad/lib astocadlib /usr/lib/freecad-python3/lib
 
 #DEBHELPER#
 
