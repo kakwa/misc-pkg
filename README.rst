@@ -84,7 +84,7 @@ RHEL/Rocky/Fedora
 
 .. sourcecode:: bash
 
-    dnf install pbuilder apt dpkg debian-keyring ubu-keyring
+    dnf install pbuilder apt dpkg debian-keyring ubu-keyring reprepro
 
 .. quick_ref
 
