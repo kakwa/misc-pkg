@@ -49,7 +49,7 @@ else
 fi
 
 # Create the repository file
-cat << EOF | ${SUDO} tee /etc/yum.repos.d/misc-pkg.repo
+cat << EOF | ${SUDO} tee -a /etc/dnf/dnf.conf
 [misc-pkg]
 name=misc-pkg
 baseurl=https://kakwa.github.io/misc-pkg/rpm.${DISTRO_PREFIX}\$releasever.\$basearch/\$releasever/\$basearch/
