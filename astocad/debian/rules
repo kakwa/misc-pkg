@@ -62,6 +62,18 @@ override_dh_auto_install:
 	rm debian/tmp/usr/share/freecad/Mod/TechDraw/Resources/fonts/osifont-lgpl3fe.ttf
 	rm debian/tmp/usr/share/freecad/Mod/TechDraw/Resources/fonts/osifont-italic.ttf
 	rm debian/tmp/usr/share/freecad/Mod/TechDraw/Resources/fonts/osifont.license
+	mkdir -p                                      debian/tmp/usr/lib/freecad/share/Gui/AstoCAD/
+	mkdir -p                                      debian/tmp/usr/lib/freecad/bin/
+	mkdir -p                                      debian/tmp/usr/share/freecad/share/applications/
+	mkdir -p                                      debian/tmp/usr/share/icons/hicolor/scalable/apps/
+	install -m 644 branding/com.astocad.desktop   debian/tmp/usr/share/freecad/share/applications/
+	install -m 644 branding/AstoCAD.svg           debian/tmp/usr/share/icons/hicolor/scalable/apps/
+	install -m 644 branding/branding.xml          debian/tmp/usr/lib/freecad/bin/
+	install -m 644 branding/AstoCAD-defaults.cfg  debian/tmp/usr/lib/freecad/share/Gui/AstoCAD/
+	install -m 644 branding/AstoCAD.ico           debian/tmp/usr/lib/freecad/share/Gui/AstoCAD/
+	install -m 644 branding/AstoCAD-splash_2x.png debian/tmp/usr/lib/freecad/share/Gui/AstoCAD/
+	install -m 644 branding/AstoCAD-splash.png    debian/tmp/usr/lib/freecad/share/Gui/AstoCAD/
+	install -m 644 branding/AstoCAD.svg           debian/tmp/usr/lib/freecad/share/Gui/AstoCAD/
 
 override_dh_installexamples:
 

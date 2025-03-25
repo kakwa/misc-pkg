@@ -17,7 +17,7 @@ Last-Update: 2024-12-21 (tobi@debian.org)
  GenericName[pl]=Aplikacja CAD
  GenericName[ru]=Система автоматизированного проектирования
 -Exec=FreeCAD - --single-instance %F
-+Exec=/usr/bin/freecad - --single-instance %F
++Exec=/usr/bin/astocad - --single-instance %F
  Terminal=false
  Type=Application
  Icon=org.freecad.FreeCAD

@@ -2,8 +2,9 @@
 NAME = astocad
 
 # Not Versionned so we create our own
-VERSION = 2025.03.20
+VERSION = 2025.03.21
 COMMIT=467b12d3d1542cab8a7441db5980f1a56378ec50
+COMMIT_BRANDING=6e8c85049df8f2cfe94880a0af9984e8eafdc074
 
 # Revision number 
 RELEASE = 1
@@ -38,6 +39,8 @@ SKIP=<=:deb:8 >=:el:0 >=:fc:0 <=:ubu:18.4
 # example of source recovery url
 URL_SRC=https://github.com/AstoCAD/FreeCAD/archive/$(COMMIT).tar.gz
 
+BRANDING_URL_SRC=https://github.com/AstoCAD/astocad-feedstock/archive/$(COMMIT_BRANDING).tar.gz
+
 # Including common rules and targets 
 include buildenv/Makefile.common
 
@@ -61,6 +64,9 @@ $(SOURCE_ARCHIVE): $(SOURCE_DIR) $(CACHE) Makefile MANIFEST
 	mkdir -p $(BUILD_DIR)/tmp
 	tar -vxf $(BUILD_DIR)/$(NAME)-$(VERSION).tar.gz -C $(BUILD_DIR)/tmp
 	mv $(BUILD_DIR)/tmp/FreeCAD-$(COMMIT)/* $(SOURCE_DIR)
+	$(WGS) -u $(BRANDING_URL_SRC) -o $(BUILD_DIR)/$(NAME)-feedstock-$(VERSION).tar.gz
+	tar -vxf $(BUILD_DIR)/$(NAME)-feedstock-$(VERSION).tar.gz -C $(BUILD_DIR)/tmp
+	mv $(BUILD_DIR)/tmp/*/recipe/branding $(SOURCE_DIR)
 	rm -rf $(BUILD_DIR)/tmp
 	rm -f $(BUILD_DIR)/$(NAME)-$(VERSION).tar.gz
 	$(SOURCE_TAR_CMD)

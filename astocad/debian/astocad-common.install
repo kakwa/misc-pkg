@@ -5,4 +5,8 @@ usr/share/freecad/Ext/*
 usr/share/freecad/share/icons/* usr/share/icons
 usr/share/freecad/share/thumbnailers/* usr/share/thumbnailers
 usr/share/freecad/3Dconnexion/*
+usr/lib/freecad/bin/branding.xml
+usr/lib/freecad/share/Gui/AstoCAD/*
+usr/share/freecad/share/pixmaps/freecad.svg
+usr/share/icons/hicolor/scalable/apps/AstoCAD.svg
 data/examples usr/share/freecad/examples
