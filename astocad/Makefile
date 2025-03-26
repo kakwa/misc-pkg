@@ -2,7 +2,7 @@
 NAME = astocad
 
 # Not Versionned so we create our own
-VERSION = 2025.03.21
+VERSION = 2025.03.22
 COMMIT=467b12d3d1542cab8a7441db5980f1a56378ec50
 COMMIT_BRANDING=6e8c85049df8f2cfe94880a0af9984e8eafdc074
 
