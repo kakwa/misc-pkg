@@ -1,0 +1,32 @@
+#!/usr/bin/make -f
+
+include /usr/share/dpkg/pkg-info.mk
+
+BIN_NAME = spotifyd
+BIN_DESCRIPTION = "spotify daemon"
+
+%:
+	dh $@ --buildsystem cargo
+
+override_dh_auto_configure:
+	mkdir -p debian/cargo_home/
+	CARGO_HOME=`pwd`/debian/cargo_home/ cargo fetch
+	touch debian/cargo_home/config.toml
+
+
+override_dh_install:
+	dh_install
+	mkdir -p debian/$(BIN_NAME)/etc/
+	install -m 644 debian/spotifyd.conf debian/$(BIN_NAME)/etc/
+
+override_dh_installman:
+	help2man \
+		--name $(BIN_DESCRIPTION) \
+		--no-info \
+		--no-discard-stderr \
+		--version-string $(DEB_VERSION_UPSTREAM) \
+		--output debian/$(BIN_NAME).1 \
+		debian/$(BIN_NAME)/usr/bin/$(BIN_NAME)
+	dh_installman -O--buildsystem=cargo
+
+override_dh_auto_test:
