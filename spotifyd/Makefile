@@ -27,7 +27,7 @@ LICENSE=GPLv3
 #   <dist>:    the distribution code name (examples: 'deb', 'el', 'fc')
 #   <version>: the version number to ignore
 #
-#SKIP=<=:deb:8 <=:el:6 <=:fc:29 <=:ubu:18.4
+SKIP=<=:deb:12 >=:el:0 >=:fc:0 <=:ubu:24.4
 
 COWBUILD_BUILD_ADDITIONAL_ARGS=--use-network yes
 MOCK_BUILD_ADDITIONAL_ARGS=--enable-network
