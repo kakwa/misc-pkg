@@ -11,7 +11,7 @@ RELEASE = 1
 URL=https://github.com/Spotifyd/spotifyd
 
 # short summary of what the package provides
-SUMMARY=
+SUMMARY=A spotify daemon
 
 # Long version of the summary, but I'm lazy
 DESCRIPTION=$(SUMMARY)
