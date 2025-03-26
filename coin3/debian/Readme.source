@@ -1,0 +1,16 @@
+This is the snapshot from the upstream mercurial-repo.
+It was necessary to pull this changes mostly due to the #884947.
+
+The current coin3 stopped to work accidentally just after the
+recompiling by the current toolchain. Crashes somewhere in memalloc.cpp.
+From my point of view, it is due to obsolete build system...  Coin3
+uses autotools and we are not able to use autoreconfigure due to some
+errors.
+
+The upstream provided cmake-support in a feature-branch, I checked it
+and it seems everything is working as awaited: at least freecad does
+not segfault any more.
+
+
+<2017-12-26 Tue>
+Anton Gladky <gladk@debian.org>

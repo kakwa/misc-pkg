@@ -1,0 +1,546 @@
+coin3 (4.0.3+ds-2) unstable; urgency=medium
+
+  * Team upload.
+  * Fix freecad crash (egl). (Closes: #1050302)
+
+ -- Anton Gladky <gladk@debian.org>  Sat, 01 Mar 2025 17:54:39 +0100
+
+coin3 (4.0.3+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Leopold Palomo-Avellaneda <leo@alaxarxa.net>  Tue, 28 Jan 2025 14:26:46 +0100
+
+coin3 (4.0.2+ds-3) unstable; urgency=medium
+
+  * Team upload.
+  * Allow stderr on autopkgtest, see #1087859.
+
+ -- Tobias Frost <tobi@debian.org>  Thu, 26 Dec 2024 19:22:14 +0100
+
+coin3 (4.0.2+ds-2) unstable; urgency=medium
+
+  * Team upload
+  * Unhijack package
+
+ -- Bastian Germann <bage@debian.org>  Wed, 08 May 2024 21:34:34 +0000
+
+coin3 (4.0.2+ds-1.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * debian/patches/64-bit-time-t-compat.patch: compatibility with 64-bit
+    time_t.  Closes LP: #2058160.
+
+ -- Steve Langasek <vorlon@debian.org>  Sun, 17 Mar 2024 21:56:00 +0000
+
+coin3 (4.0.2+ds-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Rename libraries for 64-bit time_t transition.  Closes: #1062092
+
+ -- Steve Langasek <vorlon@debian.org>  Wed, 28 Feb 2024 16:47:51 +0000
+
+coin3 (4.0.2+ds-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+    - Drop patches, applied upstream: 01_convert_old_patches.patch,
+      0004-Fix-GLX-glue-trying-to-use-NULL-display.patch,
+      0005-Change-encoding.patch, 0006-Fix-encoding-issue.patch
+  * Fix watchfile (Closes: #1057846) 
+
+ -- Tobias Frost <tobi@debian.org>  Sat, 09 Dec 2023 16:57:42 +0100
+
+coin3 (4.0.0+ds-5) unstable; urgency=medium
+
+  * Team upload.
+  * Avoid deprecation warning with CMake 3.27 (Closes: #1040725)
+  * Bump Standards-Version to 4.6.2
+
+ -- Timo Röhling <roehling@debian.org>  Mon, 10 Jul 2023 00:27:22 +0200
+
+coin3 (4.0.0+ds-4) unstable; urgency=medium
+
+  Team upload.
+
+  [ Leopold Palomo-Avellaneda ]
+  * [914a7be] Drop unused files
+  * [6541f99] Added examples
+  * [e55eb53] Added pending files
+  * [398d98d] Simplified rules and added examples
+  * [fd91cb9] Added file specify not installed files
+  * [2cab2b1] Added patch to fix encoding problem
+  * [7f4e4b4] Bumb debhelper version. No changes
+  * [a6cc7b9] Added patch to fix another encoding problem
+
+  [ Gianfranco Costamagna ]
+  * coin3: Fix autopkgtest regression due to new CMake warning (Closes: #1036843)
+
+  [ Timo Röhling ]
+  * Make xvfb-run invocation more robust
+
+ -- Timo Röhling <roehling@debian.org>  Wed, 21 Jun 2023 21:26:21 +0200
+
+coin3 (4.0.0+ds-3) unstable; urgency=medium
+
+  * Team upload.
+  * [33d2f6d] Fix d/watch
+  * [8b5afa8] Apply Multi-Arch hints
+  * [8647e12] Bump Standards-Version to 4.6.1
+
+  [ Leopold Palomo-Avellaneda ]
+  * [3349935] Cherry-pick upstream patch to prevent Wayland crash with
+    NULL display (Closes: #969230)
+
+ -- Timo Röhling <roehling@debian.org>  Wed, 15 Jun 2022 12:38:29 +0200
+
+coin3 (4.0.0+ds-2) unstable; urgency=medium
+
+  * Team upload.
+  * [3591aff] Fix autopkgtest regression with CMake 3.19+
+
+ -- Timo Röhling <roehling@debian.org>  Thu, 16 Sep 2021 18:39:02 +0200
+
+coin3 (4.0.0+ds-1) unstable; urgency=medium
+
+  [ Kurt Kremitzki ]
+  * [f181a5a] Update d/watch location to Github
+  * [a8a9f50] Refresh drop cpack patch
+  * [b5c4a9d] Drop upstreamed interpreter path patch
+  * [9d3b575] Add flag to build documentation
+  * [225e8d5] Remove unneeded Files-Excluded entry
+  * [0f2e33d] New upstream version 4.0.0+ds
+
+  [ Leopold Palomo-Avellaneda ]
+  * [db355b0] Improve autotest. Added cmake versions and parameters
+    to use xvfb-run in autotest
+  * [519898d] Update dependencies because changes in libgl-dev
+  * [97763fc] Drop unneeded dependencies
+  * [6c89c62] Update homepage
+  * [19aefc3] Added R³ rule
+  * [9e49ecc] Bump policy version (no changes)
+  * [721e4a3] Switch to debhelper-compat and debhelper 12
+
+ -- Leopold Palomo-Avellaneda <leo@alaxarxa.net>  Thu, 09 Jan 2020 16:11:55 +0100
+
+coin3 (4.0.0~CMake~6f54f1602475+ds1-3) unstable; urgency=medium
+
+  [ Leopold Palomo-Avellaneda ]
+  * Team upload.
+  * [6082118] Update .gitlab-ci.yml to a new version
+
+  [ Anton Gladky ]
+  * [8ba6e6b] Remove myself from uploaders
+
+ -- Anton Gladky <gladk@debian.org>  Mon, 05 Aug 2019 13:27:18 +0200
+
+coin3 (4.0.0~CMake~6f54f1602475+ds1-2) unstable; urgency=medium
+
+  * Fix autopkgtest.
+  * Set Standards-Version: 4.3.0. No changes.
+
+ -- Leopold Palomo-Avellaneda <leo@alaxarxa.net>  Thu, 24 Jan 2019 10:33:15 +0100
+
+coin3 (4.0.0~CMake~6f54f1602475+ds1-1) unstable; urgency=medium
+
+  * Transition from experimental to unstable. Closes: #914392
+
+ -- Leopold Palomo-Avellaneda <leo@alaxarxa.net>  Wed, 19 Dec 2018 23:03:29 +0100
+
+coin3 (4.0.0~CMake~6f54f1602475+ds1-1~exp2) experimental; urgency=medium
+
+  * Added Conflicts in libcoin-dev to inventor-dev. Closes: #914686
+  * We are not using (CMake version) the embed expat library. Closes: #560928
+
+ -- Leopold Palomo-Avellaneda <leo@alaxarxa.net>  Mon, 26 Nov 2018 13:23:12 +0100
+
+coin3 (4.0.0~CMake~6f54f1602475+ds1-1~exp1) experimental; urgency=medium
+
+  [ Anton Gladky ]
+  * Remove testsuite-files from d/control
+  * Use Breaks/Replaces. Remove old libs-confilcts
+  * Do not introduce privacy breach
+  * Mangle ds-version in d/watch
+
+  [ Leopold Palomo-Avellaneda ]
+  * New upstream version 6f54f1602475 (20181007)
+  * Added cmake files
+  * Update changelog
+  * Renamed package dropping v5 suffix to c
+  * Drop the moved files
+  * Delete trailing whitespaces in changelog
+  * Added myself as Uploader
+  * Drop unused files
+  * Delete Breaks and replaces changed to libcoin80v5
+  * Improved rules to use CMake
+  * Renamed libcoin80-dev to libcoin-dev
+  * Rename libcoin80-doc to libcoin-doc
+  * Rename libcoin80-runtime to libcoin-runtime
+  * Bump standards version. No changes
+  * Improve libcoin-doc long description
+  * Bump debhelper dependency to 11
+  * Use of system expat library. Added as build dependency. (Closes: #884947)
+
+ -- Leopold Palomo-Avellaneda <leo@alaxarxa.net>  Wed, 14 Nov 2018 15:19:01 +0100
+
+coin3 (4.0.0~CMake~1d5b2270e495+dfsg1-1~exp1) experimental; urgency=medium
+
+  * [ee4f2fa] New upstream version 4.0.0~CMake~1d5b2270e495+dfsg1
+  * [77535c3] Add Readme.source
+  * [0899133] Refresh patches
+  * [e533e12] Update due to a new release
+  * [88ca1a5] Add myself to uploaders again
+  * [52a0f11] Apply cme fix dpkg
+
+ -- Anton Gladky <gladk@debian.org>  Wed, 27 Dec 2017 00:24:51 +0100
+
+coin3 (3.1.4~abc9f50+dfsg3-2) unstable; urgency=medium
+
+  * Team upload.
+  * [e6b5281] Use SbHash-file from the current upstream version. (Closes: #884947)
+  * [6628274] Set Standards-Version to 4.1.3
+  * [47240a4] Update VCS-field
+
+ -- Anton Gladky <gladk@debian.org>  Fri, 29 Dec 2017 00:27:37 +0100
+
+coin3 (3.1.4~abc9f50+dfsg3-1) unstable; urgency=medium
+
+  * [2b9d334] Revert the previoud removal of embedded expat. (Closes: #884947)
+  * [7b2c782] New upstream version 3.1.4~abc9f50+dfsg3
+
+ -- Anton Gladky <gladk@debian.org>  Sat, 23 Dec 2017 09:50:10 +0100
+
+coin3 (3.1.4~abc9f50+dfsg2-1) unstable; urgency=medium
+
+  * Team upload.
+  * [e1dfea6] Remove an embedded version of expat. (Closes: #874727)
+  * [6fa83c5] Use compat level 10
+  * [abf1040] Ignore files src/xml/expat in d/copyright
+  * [7c4d8f0] New upstream version 3.1.4~abc9f50+dfsg2
+  * [d61c626] Apply cme fix dpkg
+  * [9d48f66] Remove myself from uploaders
+
+ -- Anton Gladky <gladk@debian.org>  Wed, 20 Dec 2017 21:45:35 +0100
+
+coin3 (3.1.4~abc9f50+dfsg1-2) unstable; urgency=medium
+
+  [ Francesco Poli ]
+  * [832d33b] Fix d/copyright. (Closes: #824711)
+
+  [ Anton Gladky ]
+  * [fd84979] Apply cme fix dpkg.
+  * [81f0d54] Activate ldconfig trigger.
+
+ -- Anton Gladky <gladk@debian.org>  Fri, 20 May 2016 19:59:43 +0200
+
+coin3 (3.1.4~abc9f50+dfsg1-1) unstable; urgency=medium
+
+  * [512fe7c] Add cfg/*.exe to Files-Exclude. (Closes: #795241)
+  * [34acbce] Imported Upstream version 3.1.4~abc9f50+dfsg1
+  * [c0af329] Update d/copyright. (Closes: #795242)
+
+ -- Anton Gladky <gladk@debian.org>  Wed, 12 Aug 2015 15:17:11 +0200
+
+coin3 (3.1.4~abc9f50-10) unstable; urgency=medium
+
+  * [c2c2387] Rename libcoin80 due to GCC-5 transition. (Closes: #791005)
+
+ -- Anton Gladky <gladk@debian.org>  Tue, 11 Aug 2015 17:09:22 +0200
+
+coin3 (3.1.4~abc9f50-9) unstable; urgency=medium
+
+  * [9b6129c] Disable manpage generation
+  * [fc10ff3] Fix the license name.
+  * [f89e224] Apply fix cme dpkg-copyright.
+
+ -- Anton Gladky <gladk@debian.org>  Wed, 10 Jun 2015 21:04:42 +0200
+
+coin3 (3.1.4~abc9f50-8) unstable; urgency=medium
+
+  * [f1342f6] Remove timestamp in generated html.
+  * [87063f6] Set Standards-Version: 3.9.6. No changes.
+  * [f99a2ec] Use cme fix dpkg-control.
+
+ -- Anton Gladky <gladk@debian.org>  Tue, 05 May 2015 22:18:27 +0200
+
+coin3 (3.1.4~abc9f50-7) unstable; urgency=medium
+
+  * [7511871] Add missing libs to autopkgtest.
+
+ -- Anton Gladky <gladk@debian.org>  Thu, 29 May 2014 21:05:59 +0200
+
+coin3 (3.1.4~abc9f50-6) unstable; urgency=medium
+
+  * [a71ca9d] Fix linkage in autopkgtests.
+
+ -- Anton Gladky <gladk@debian.org>  Fri, 23 May 2014 21:34:00 +0200
+
+coin3 (3.1.4~abc9f50-5) unstable; urgency=medium
+
+  * [016c008] Add autopkgtests.
+  * [af540e5] Set Standards-Version: 3.9.5. No changes.
+  * [1347143] Set canonical VCS-fields.
+
+ -- Anton Gladky <gladk@debian.org>  Sat, 10 May 2014 22:48:22 +0200
+
+coin3 (3.1.4~abc9f50-4) unstable; urgency=low
+
+  * [5c22b46] Update homepage.
+  * [86b198d] Build with autotools_dev. (Closes: #727344)
+  * [2d528b8] Add --enable-threadsafe to config options. (Closes: #723567)
+  * [ccaf381] Remove some odd manpages.
+
+ -- Anton Gladky <gladk@debian.org>  Sat, 26 Oct 2013 20:58:14 +0200
+
+coin3 (3.1.4~abc9f50-3) unstable; urgency=low
+
+  * [3637e37] Rename mans for string.h and thread.h. (Closes: #710213)
+
+ -- Anton Gladky <gladk@debian.org>  Wed, 29 May 2013 19:56:12 +0200
+
+coin3 (3.1.4~abc9f50-2) unstable; urgency=low
+
+  * Move the package from experimental to unstable.
+
+ -- Anton Gladky <gladk@debian.org>  Tue, 28 May 2013 21:26:01 +0200
+
+coin3 (3.1.4~abc9f50-1) experimental; urgency=low
+
+  * [7757fb9] Imported Upstream version 3.1.4~abc9f50
+  * [638d7fc] Update copyright file. The license is changed to BSD.
+  * [e056c3e] Remove creating html/dynsections.js.
+  * [021cded] Update binary-names. Use multiarch.
+
+ -- Anton Gladky <gladk@debian.org>  Sun, 14 Apr 2013 14:22:54 +0200
+
+coin3 (3.1.3-3~exp1) experimental; urgency=low
+
+  * [bac6081] Switch to dpkg-source 3.0 (quilt) format
+  * [0051dcd] Update watch-file. Thanks to Bart Martens <bartm@debian.org>.
+  * [4f64bb1] Update copyright-file to DEP-5.
+  * [4a78846] Switch VCS to git.
+  * [8398847] Convert patch to quilt-format.
+  * [b98daa0] Clean debian/rules. Use .install-files.
+  * [ace5108] Use dh 9, Standards-Version 3.9.4. No multi-arch support yet.
+  * [c7e12ca] Add myself to uploaders.
+  * [216f542] Update changelog.
+  * [7b606c3] Remove Steve M. Robbins from uploaders.
+  * [55c8751] Use wrap-and-sort for formatting.
+
+ -- Anton Gladky <gladk@debian.org>  Tue, 05 Mar 2013 21:23:49 +0100
+
+coin3 (3.1.3-2.2) unstable; urgency=low
+
+  * Non maintainer upload
+  * Stop building with -fpermissive, add missing includes. Closes: #667375.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 23 May 2012 22:49:10 +0000
+
+coin3 (3.1.3-2.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+
+  [ Gregor Herrmann ]
+  * Fix "ftbfs with GCC-4.7": build with -fpermissive, thanks to Matthias
+    Klose for the pointer.
+    (Closes: #667139)
+
+  [ Matthias Klose ]
+  * Overwrite lintian warning for embedded library for this upload.
+
+ -- gregor herrmann <gregoa@debian.org>  Sun, 13 May 2012 15:39:08 +0200
+
+coin3 (3.1.3-2) unstable; urgency=low
+
+  * control: Remove dependencies on libxp-dev, which is to be obsoleted.
+    Closes: #623647.
+
+  * control: Move to Debian-science repository, set Maintainer, Uploaders,
+    and Vcs fields.
+
+  * rules: rewrite using dh.
+  * control: Remove build-dep on cdbs, quilt; add autotools-dev.
+    Set debhelper version to >= 8.  Update Standards-Version.
+  * compat: New.  Set to 8.
+
+ -- Steve M. Robbins <smr@debian.org>  Fri, 22 Apr 2011 23:18:15 -0500
+
+coin3 (3.1.3-1) unstable; urgency=low
+
+  * New upstream.
+
+ -- Steve M. Robbins <smr@debian.org>  Tue, 23 Mar 2010 20:36:32 -0500
+
+coin3 (3.1.2-1) unstable; urgency=low
+
+  * New upstream.
+
+ -- Steve M. Robbins <smr@debian.org>  Sun, 01 Nov 2009 20:48:59 -0600
+
+coin3 (3.1.0-2) unstable; urgency=low
+
+  * rules: Don't install manpage deprecated.3.  Closes: #533228.
+
+ -- Steve M. Robbins <smr@debian.org>  Mon, 29 Jun 2009 23:39:44 -0500
+
+coin3 (3.1.0-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Steve M. Robbins <smr@debian.org>  Fri, 12 Jun 2009 21:49:23 -0500
+
+coin3 (3.0.0-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Steve M. Robbins <smr@debian.org>  Sat, 11 Oct 2008 00:46:03 -0500
+
+coin2 (2.5.0-2) unstable; urgency=low
+
+  * debian/control: Change suggests from libopenal0 to libopenal0a.
+    Closes: #488001.  Change ${Source-Version} to ${binary:Version}.
+    Update to standards version 3.8.0.
+
+  * debian/rules: Do not ignore errors in clean rule.
+
+ -- Steve M. Robbins <smr@debian.org>  Sat, 28 Jun 2008 02:38:17 -0500
+
+coin2 (2.5.0-1) unstable; urgency=low
+
+  * New upstream.  Closes: #444848.
+
+ -- Steve M. Robbins <smr@debian.org>  Sun, 04 Nov 2007 15:14:38 -0600
+
+coin2 (2.4.6-2) unstable; urgency=low
+
+  * debian/control: Adapt build-depends to the latest churn of x11
+    packages.  Package libcoin20-dev now depends on all relevant X11 -dev
+    packages.
+
+ -- Steve M. Robbins <smr@debian.org>  Sat, 22 Sep 2007 19:13:09 -0500
+
+coin2 (2.4.6-1) unstable; urgency=low
+
+  * New upstream.  Closes: #417616.
+
+  * debian/rules: Install coin.m4.  Closes: #421683.
+
+ -- Steve M. Robbins <smr@debian.org>  Wed,  2 May 2007 00:56:48 -0500
+
+coin2 (2.4.5-3) unstable; urgency=low
+
+  * debian/control: Suggest libsimage-dev to enable loading image files
+  using SbImage.  Closes: #414657.  Bump Standards-Version to 3.7.2.2
+  (no changes required).
+
+  * debian/watch: New.
+
+  * debian/rules: Remove bogus man/man?/_* files before packaging.
+
+ -- Steve M. Robbins <smr@debian.org>  Wed, 14 Mar 2007 21:08:33 -0500
+
+coin2 (2.4.5-2) unstable; urgency=low
+
+  * debian/control: build-depend on libglu1-mesa-dev.  Closes: #365601.
+
+ -- Steve M. Robbins <smr@debian.org>  Mon,  1 May 2006 20:59:33 -0400
+
+coin2 (2.4.5-1) unstable; urgency=low
+
+  * New upstream version.
+    Removed excess qualification on method definition.  Closes: #357190.
+
+ -- Steve M. Robbins <smr@debian.org>  Sun, 30 Apr 2006 16:58:52 -0400
+
+coin2 (2.4.4-2) unstable; urgency=low
+
+  * debian/control: Replace build-dependency on xlibs-dev with 8 others.
+    This is progress, apparently.  Closes: #346642.
+
+ -- Steve M. Robbins <smr@debian.org>  Fri, 13 Jan 2006 02:46:28 -0500
+
+coin2 (2.4.4-1) unstable; urgency=low
+
+  * New upstream version.  Closes: #329162.
+
+ -- Steve M. Robbins <smr@debian.org>  Wed, 23 Nov 2005 22:15:00 -0500
+
+coin2 (2.4.3-3) unstable; urgency=low
+
+  * debian/rules: Drop optimization level to -O2 for m68k in hopes
+  of being able to compile on that platform.
+
+ -- Steve M. Robbins <smr@debian.org>  Mon, 15 Aug 2005 21:18:10 -0400
+
+coin2 (2.4.3-2) unstable; urgency=low
+
+  * Rename libcoin40 to libcoin40c2 for the GCC 4 transition.
+  Closes: #317668.
+
+  * Comment out one line in configure that disables building both shared
+  and static libraries.
+
+ -- Steve M. Robbins <smr@debian.org>  Sun, 10 Jul 2005 12:49:06 -0400
+
+coin2 (2.4.3-1) unstable; urgency=low
+
+  * New upstream version.  Closes: #312742.
+
+ -- Steve M. Robbins <smr@debian.org>  Sun, 10 Jul 2005 06:36:47 -0400
+
+coin2 (2.3.0-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Steve M. Robbins <smr@debian.org>  Thu, 24 Jun 2004 13:38:40 -0400
+
+coin2 (2.2.1-2) unstable; urgency=low
+
+  * configure: Fix problem detecting linker on amd64; applied patch
+  from Andreas Jochens.  Closes: #253270.
+
+ -- Steve M. Robbins <smr@debian.org>  Tue,  8 Jun 2004 19:34:23 -0400
+
+coin2 (2.2.1-1) unstable; urgency=low
+
+  * New upstream version.  Closes: #242127.
+
+  * debian/control: Suggest libbz2-1.0 rather than libbz2.
+    Closes: #237881.
+
+ -- Steve M. Robbins <smr@debian.org>  Sat, 10 Apr 2004 07:52:41 -0400
+
+coin2 (2.1.0-2) unstable; urgency=low
+
+  * debian/control: Do not use lines starting with space, full stop,
+  and more characters.  Closes: #208217.
+  Change build dependency from xlibmesa-dev to xlibmesa-gl-dev
+
+ -- Steve M. Robbins <smr@debian.org>  Sat, 25 Oct 2003 08:17:24 -0400
+
+coin2 (2.1.0-1) unstable; urgency=low
+
+  * New upstream release.
+
+  * debian/control: Suggest libraries libfreetype6, zlib1g, and libbz2 for
+    additional features introduced in this release.
+
+ -- Steve M. Robbins <smr@debian.org>  Sat, 12 Jul 2003 11:13:50 -0400
+
+coin2 (2.0.2-2) unstable; urgency=low
+
+  * debian/libcoin40-doc.doc-base: Fix document name and files (*.png,
+    not *.gif).  Closes: #192581.
+
+  * include/Inventor/lists/SbIntList.h: Apply patch from CVS for int
+    to pointer cast.  Closes: #192572.
+
+  * Update libtool for mipsel.  Closes: #190223.
+
+ -- Steve M. Robbins <smr@debian.org>  Fri, 18 Apr 2003 21:25:12 -0400
+
+coin2 (2.0.2-1) unstable; urgency=low
+
+  * Initial Debian packaging.
+
+ -- Steve M. Robbins <smr@debian.org>  Sat,  5 Apr 2003 13:04:13 -0500
