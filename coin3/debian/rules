@@ -1,0 +1,25 @@
+#!/usr/bin/make -f
+
+DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+DEB_BUILD_OPTIONS += nocheck
+export DEB_BUILD_MAINT_OPTIONS = hardening=+bindnow
+
+CMAKE_FLAGS = \
+        -DCOIN_BUILD_DOCUMENTATION=ON \
+        -DCOIN_BUILD_EGL=ON \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_INSTALL_LIBDIR="/usr/lib/$(DEB_HOST_MULTIARCH)" \
+        -DCMAKE_VERBOSE_MAKEFILE=ON \
+        -DUSE_EXTERNAL_EXPAT=ON
+
+%:
+	dh $@ --buildsystem=cmake --without autoreconf
+
+override_dh_auto_configure:
+	dh_auto_configure -- $(CMAKE_FLAGS) $(CMAKE_ARCH_FLAGS)
+
+override_dh_installdocs:
+	cp -r $(CURDIR)/examples $(CURDIR)/debian/tmp/usr/share/doc/Coin/
+	dh_installdocs
+	find $(CURDIR)/debian/libcoin-doc/ -type f -print0 | xargs --no-run-if-empty -0 sed -i 's/http:\/\/www\.web3d\.org//g'

@@ -1,0 +1,20 @@
+From: Leopold Palomo-Avellaneda <leo@alaxarxa.net>
+Date: Wed, 24 Oct 2018 23:05:24 +0200
+Subject: Added-c-suffix-to-SO_VERSION
+
+---
+ CMakeLists.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 93d69f4..0113b31 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -11,6 +11,7 @@ string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)
+ 
+ string(TIMESTAMP COIN_BUILD_YEAR "%Y")
+ math(EXPR COIN_SO_VERSION ${PROJECT_VERSION_MAJOR}*20)
++set(COIN_SO_VERSION ${COIN_SO_VERSION}c)
+ 
+ # ############################################################################
+ # these will be removed after upgrading CMake minimum version

@@ -1,0 +1,3 @@
+usr/bin/coin-config
+usr/lib/*/pkgconfig/Coin.pc
+usr/share/Coin/conf/coin-default.cfg

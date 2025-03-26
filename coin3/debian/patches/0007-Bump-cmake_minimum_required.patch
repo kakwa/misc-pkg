@@ -1,0 +1,18 @@
+From: =?utf-8?q?Timo_R=C3=B6hling?= <roehling@debian.org>
+Date: Mon, 10 Jul 2023 00:21:07 +0200
+Subject: Bump cmake_minimum_required
+
+---
+ src/coin-config.cmake.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/coin-config.cmake.in b/src/coin-config.cmake.in
+index a6aa4fc..e0ba77e 100644
+--- a/src/coin-config.cmake.in
++++ b/src/coin-config.cmake.in
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 2.8.12)
++cmake_minimum_required(VERSION 2.8.12...3.26)
+ 
+ # Have a look at VTKConfig.cmake.in, especially regarding UseVTK.cmake
+ # https://github.com/Kitware/VTK/blob/master/CMake/VTKConfig.cmake.in

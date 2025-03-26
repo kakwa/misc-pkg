@@ -1,0 +1,21 @@
+Description: compatibility with 64-bit time_t
+ tv_usec is (unnecessarily) a 64-bit type when _TIME_BITS=64 is enabled.
+ use 'long long' in this case as it's the only suitable public type.
+Author: Steve Langasek <steve.langasek@canonical.com>
+Forwarded: no
+Last-Update: 2024-03-17
+Bug-Ubuntu: https://bugs.launchpad.net/bugs/2058160
+
+Index: coin3-4.0.2+ds/CMakeLists.txt
+===================================================================
+--- coin3-4.0.2+ds.orig/CMakeLists.txt
++++ coin3-4.0.2+ds/CMakeLists.txt
+@@ -814,7 +814,7 @@
+ 
+ check_type_size("((struct timeval*)0)->tv_usec" TIMEVAL_TV_USEC)
+ if(HAVE_TIMEVAL_TV_USEC)
+-  coin_find_int_type_with_size(SIM_TIMEVAL_TV_USEC_T ${TIMEVAL_TV_USEC} "suseconds_t" "long")
++  coin_find_int_type_with_size(SIM_TIMEVAL_TV_USEC_T ${TIMEVAL_TV_USEC} "suseconds_t" "long" "long long")
+   if(NOT SIM_TIMEVAL_TV_USEC_T)
+     message(FATAL_ERROR "TIMEVAL_TV_USEC: Neither of checked types (suseconds_t, long) were of requested size ${TIMEVAL_TV_USEC}")
+   endif()
