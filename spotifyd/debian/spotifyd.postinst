@@ -23,12 +23,12 @@ case "$1" in
     configure)
         adduser \
             --system \
-            --home /var/lib/spotifyd \
+            --home /var/lib/${USER} \
             --quiet \
             --group \
             ${USER}
-	systemctl daemon-reload
-
+        usermod -aG audio ${USER}
+	    systemctl daemon-reload
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
