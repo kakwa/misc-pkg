@@ -1,0 +1,23 @@
+Source: @NAME@
+Section: misc
+Priority: extra
+Maintainer: @MAINTAINER@ <@MAINTAINER_EMAIL@>
+Build-Depends:
+ debhelper (>= 7.0.50~),
+ cargo,
+ libasound2-dev,
+ libssl-dev,
+ libpulse-dev,
+ libdbus-1-dev,
+ portaudio19-dev,
+ dh-cargo,
+ dh-rust
+Standards-Version: 3.8.4
+Homepage: @URL@ 
+X-Python-Version: >= 2.5
+
+Package: @NAME@
+Architecture: any
+Depends: ${misc:Depends}, libportaudio2, libasound2t64, libssl3t64, libpulse0, libdbus-1-3
+Description: @SUMMARY@ 
+ @DESCRIPTION@ 
