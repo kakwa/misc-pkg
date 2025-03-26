@@ -13,9 +13,8 @@ override_dh_auto_configure:
 	CARGO_HOME=`pwd`/debian/cargo_home/ cargo fetch
 	touch debian/cargo_home/config.toml
 
-
-override_dh_install:
-	dh_install
+override_dh_auto_install:
+	CARGO_HOME=`pwd`/debian/cargo_home/ CARGO_BUILD_TARGET_DIR=/tmp CARGO_TARGET_DIR=/tmp cargo install --path ./ --root debian/$(BIN_NAME)/usr/
 	mkdir -p debian/$(BIN_NAME)/etc/
 	install -m 644 debian/spotifyd.conf debian/$(BIN_NAME)/etc/
 
