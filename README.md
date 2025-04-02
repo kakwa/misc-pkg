@@ -29,37 +29,7 @@ ${VERSION_CODENAME} main" | ${SUDO} tee /etc/apt/sources.list.d/misc-pkg.list
 # update
 apt update
 ```
-
-## RHEL/Rocky/Fedora
-
-If you are using `RHEL`/`Rocky`/`Fedora`, here how to install the repository:
-
-```shell
-# If you are not root
-export SUDO=sudo
-
-# Get your OS version
-. /etc/os-release
-
-# Determine distro prefix (el for RHEL/Rocky, fc for Fedora)
-if [[ "$ID" == "fedora" ]]; then
-    DISTRO_PREFIX="fc"
-else
-    DISTRO_PREFIX="el"
-fi
-
-# Create the repository file
-cat << EOF | ${SUDO} tee -a /etc/dnf/dnf.conf
-[misc-pkg]
-name=misc-pkg
-baseurl=https://kakwa.github.io/misc-pkg/rpm.${DISTRO_PREFIX}\$releasever.\$basearch/\$releasever/\$basearch/
-enabled=1
-gpgcheck=1
-gpgkey=https://kakwa.github.io/misc-pkg/GPG-KEY.pub
-EOF
-```
-
-# Build The `.rpm`/`.deb` Repositories
+## Build
 
 This project uses [Pakste](https://github.com/kakwa/pakste).
 
