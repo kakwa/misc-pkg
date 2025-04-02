@@ -19,18 +19,16 @@ DESCRIPTION=$(SUMMARY)
 # License of the upstream project
 LICENSE=Upstream License
 
-# NIST Vulnerability Database CPE pattern
-# Default: 'cpe:2.3:*:*:$(NAME):'
-# Value can be discoverd at: https://kakwa.github.io/cpe-search/
-#NVD_CPE_PATTERN='cpe:2.3:*:*:@@COMPONENT_NAME@@:*:*:*:*:*'
+# NIST Vulnerability Database CPE pattern (default: cpe:2.3:*:*:$(NAME):*)
+# CPE values can be discovered at: https://kakwa.github.io/cpe-search/
+#NVD_CPE_PATTERN=cpe:2.3:*:*:@@COMPONENT_NAME@@:*:*:*:*:*
 
 # Comma separated list of CVEs to ignore
-# Use it if false positive.
-#NVD_IGNORE_CVES='CVE-2023-1234,CVE-2023-5678'
+#NVD_IGNORE_CVES=CVE-2023-1234,CVE-2023-5678
 
-# Minimum Version for CVEs, defaults to $(VERSION)
-# Set to empty string to remove any version constraints
-#NVD_MIN_VERSION='0.0.1'
+# Minimum Version for CVEs (default: $(VERSION))
+# Set to 0 for all CVEs
+#NVD_MIN_VERSION=0.0.1
 
 # Distribution versions to skip
 #

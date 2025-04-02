@@ -50,27 +50,23 @@ CPE & filter parameters can be tweaked in the package ``Makefile``:
 .. sourcecode:: make
 
     # NIST Vulnerability Database CPE pattern
-    # Default: 'cpe:2.3:*:*:$(NAME):'
-    # Value can be discoverd at: https://kakwa.github.io/cpe-search/
-    NVD_CPE_PATTERN='cpe:2.3:*:*:@@COMPONENT_NAME@@:*:*:*:*:*'
+    NVD_CPE_PATTERN=cpe:2.3:*:*freecade:*
     
     # Comma separated list of CVEs to ignore
-    # Use it if false positive.
-    NVD_IGNORE_CVES='CVE-2023-1234,CVE-2023-5678'
+    NVD_IGNORE_CVES=CVE-2023-1234,CVE-2023-5678
     
     # Minimum Version for CVEs, defaults to $(VERSION)
-    # Set to empty string to remove any version constraints
-    NVD_MIN_VERSION='0.0.1'
+    NVD_MIN_VERSION=0
 
-Visit https://kakwa.github.io/cpe-search/ to find the correct filter.
+Visit https://kakwa.github.io/cpe-search/ to find filters.
 
-To validate (assuming the package has CVEs):
+To validate/troubleshoot (assuming the package has past CVEs):
 
 .. sourcecode:: bash
 
-    make vulncheck NVD_MIN_VERSION=''
+    make vulncheck NVD_MIN_VERSION=0 NVD_IGNORE_CVES= --trace
 
-To enable daily vulnerability check (Github Action):
+To enable daily vulnerability check Github Action:
 
 1. Go to repository Settings → Secrets and variables → Actions → Variables
 2. Create a new variable named ``NVD_CHECK_ENABLED`` with value ``true``
