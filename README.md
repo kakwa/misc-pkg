@@ -1,4 +1,5 @@
 [![Build Packages Repositories](https://github.com/kakwa/misc-pkg/actions/workflows/repos.yml/badge.svg)](https://github.com/kakwa/misc-pkg/actions/workflows/repos.yml)
+[![NVD CVEs check](https://github.com/kakwa/misc-pkg/actions/workflows/vulncheck.yml/badge.svg)](https://github.com/kakwa/misc-pkg/actions/workflows/vulncheck.yml)
 
 # misc-pkg
 
