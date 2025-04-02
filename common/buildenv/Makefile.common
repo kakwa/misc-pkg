@@ -14,13 +14,17 @@ endif
 #
 # Main targets
 #
-.PHONY: all rpm_prepare rpm deb clean_build clean_cache clean reset_manifest manifest help deb_chroot deb_get_chroot_path rpm_chroot rpm_shell_chroot deb_shell_chroot
+.PHONY: all rpm_prepare rpm deb clean_build clean_cache clean reset_manifest manifest help deb_chroot deb_get_chroot_path rpm_chroot rpm_shell_chroot deb_shell_chroot vulncheck
 
 all: deb rpm
 
 # Create build directories
 $(DIRECTORIES):
 	@mkdir -p $@
+
+# Vulnerability check target
+vulncheck:
+	@./buildenv/check-cves.sh -c "$(NVD_CPE_PATTERN)" $(if $(NVD_MIN_VERSION),-V "$(NVD_MIN_VERSION)") $(if $(NVD_IGNORE_CVES),-I "$(NVD_IGNORE_CVES)")
 
 # Cleaning targets
 clean_build:
@@ -68,6 +72,7 @@ Available targets:
                Specify distribution with "DIST=<code name>" (e.g., "make rpm_chroot DIST=el7")
                Requires root permissions for mock
 * list_dist  : List distribution code names
+* vulncheck  : Check for known vulnerabilities using NVD database
 endef
 export MAKE_HELP
 

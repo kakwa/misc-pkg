@@ -8,6 +8,7 @@ endif
 # ----------------------------------------------------------------------------
 PKG := $(shell find ./* -maxdepth 0 -type d | grep -v '^./common\|^./out')
 clean_PKG := $(addprefix clean_,$(PKG))
+vulncheck_PKG := $(addprefix vulncheck_,$(PKG))
 deb_PKG := $(addprefix deb_,$(PKG))
 deb_chroot_PKG := $(addprefix deb_chroot_,$(PKG))
 rpm_chroot_PKG := $(addprefix rpm_chroot_,$(PKG))
@@ -91,6 +92,9 @@ $(PKG):
 $(clean_PKG):
 	@+echo  $(MAKE) -C $(patsubst clean_%,%,$@) clean
 	@$(MAKE) -C $(patsubst clean_%,%,$@) clean
+
+$(vulncheck_PKG):
+	@$(MAKE) -C $(patsubst vulncheck_%,%,$@) vulncheck
 
 $(deb_chroot_PKG):
 	@+echo  $(MAKE) -C $(patsubst deb_chroot_%,%,$@) deb_chroot
@@ -292,12 +296,14 @@ $(OUT_DIR)/GPG-KEY.pub:
 # ----------------------------------------------------------------------------
 clean: clean_pkg clean_repo
 
+vulncheck: $(vulncheck_PKG)
+
 # Phony Targets Declaration
 # ----------------------------------------------------------------------------
 .PHONY: $(DEB_REPO_TARGETS) $(RPM_REPO_TARGETS) \
   internal_deb_repo rpm deb deb_repo rpm_repo export_key \
   clean_pkg clean_repo clean_rpm_repo help \
-  deb_chroot deb_internal deb_chroot_internal deb_get_chroot_path list_dist \
+  deb_chroot deb_internal deb_chroot_internal deb_get_chroot_path list_dist vulncheck \
   rpm_repo rpm_chroot_internal rpm_chroot update deb_all_repos rpm_all_repos all_repos github_matrix
 
 # Help Target

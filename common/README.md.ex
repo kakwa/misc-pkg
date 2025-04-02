@@ -1,4 +1,5 @@
 [![Build Packages Repositories](https://github.com/@ORG@/@REPO@/actions/workflows/repos.yml/badge.svg)](https://github.com/@ORG@/@REPO@/actions/workflows/repos.yml)
+[![CVEs/NVD Check](https://github.com/@ORG@/@REPO@/actions/workflows/vulncheck.yml/badge.svg)](https://github.com/@ORG@/@REPO@/actions/workflows/vulncheck.yml)
 
 # @REPO@
 

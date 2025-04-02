@@ -1,5 +1,3 @@
-
-
 Reference
 =========
 
@@ -30,6 +28,9 @@ Miscellaneous Targets
    * - ``clean``
      - package & repo/root
      - Remove all build artifacts and directories
+   * - ``vulncheck``
+     - package & repo/root
+     - Check NVD public vulnerabilities
    * - ``github_matrix``
      - repo/root
      - Output the Github Action Matrix (json)
