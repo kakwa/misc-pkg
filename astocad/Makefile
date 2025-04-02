@@ -21,6 +21,15 @@ DESCRIPTION=$(SUMMARY)
 # License of the upstream project
 LICENSE=GPLv2
 
+NVD_CPE_PATTERN=cpe:2.3:*:*:freecad:*
+
+# Comma separated list of CVEs to ignore
+# Use it if false positive.
+NVD_IGNORE_CVES=CVE-2021-45844,CVE-2021-45845
+
+# Minimum Version for CVEs, defaults to $(VERSION)
+# Set to empty string to remove any version constraints
+NVD_MIN_VERSION=0.0.1
 
 # Distribution versions to skip
 #
