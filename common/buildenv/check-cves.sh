@@ -89,9 +89,13 @@ TEMP_JSON=$(mktemp)
 trap 'rm -f "$TEMP_JSON"' EXIT
 
 # Fetch the data
-curl -s $HEADERS "${URL}?${PARAMS}" > "$TEMP_JSON"
+while ! curl -f -s $HEADERS "${URL}?${PARAMS}" > "$TEMP_JSON";
+do
+    echo "NVD Error for ${CPE_PATTERN}, retrying in 10 seconds"
+    sleep 10
+done
 
-#cat $TEMP_JSON | jq .
+#cat $TEMP_JSON
 
 # Process and output the results
 jq -r "$QUERY" "$TEMP_JSON"
