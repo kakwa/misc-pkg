@@ -50,11 +50,7 @@ include buildenv/Makefile.common
 
 # more complex case with upstream source rework and rebuilding of the tar
 $(SOURCE_ARCHIVE): $(CACHE) Makefile MANIFEST | $(SOURCE_DIR)
-	$(WGS) -u $(URL_SRC) -o $(BUILD_DIR)/$(NAME)-$(VERSION).tar.gz
-	mkdir -p $(BUILD_DIR)/tmp
-	tar -vxf $(BUILD_DIR)/$(NAME)-$(VERSION).tar.gz -C $(BUILD_DIR)/tmp
-	rm -rf $(BUILD_DIR)/tmp/$(NAME)-$(VERSION)/debian
-	mv $(BUILD_DIR)/tmp/$(NAME)-$(VERSION)/* $(SOURCE_DIR)
-	rm -rf $(BUILD_DIR)/tmp
-	rm -f $(BUILD_DIR)/$(NAME)-$(VERSION).tar.gz
-	$(SOURCE_TAR_CMD)
+	@$(WGS) -u $(URL_SRC) -O $(NAME)-$(VERSION).tar.gz
+	@tar -vxf $(CACHE_DIR)/$(NAME)-$(VERSION).tar.gz -C $(SOURCE_DIR) --strip-components=1
+	@rm -rf -- $(SOURCE_DIR)/debian
+	@$(SOURCE_TAR_CMD)
