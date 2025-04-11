@@ -32,7 +32,9 @@ FAILURE_RPM_CHROOT_MARKER := failure.rpm.chroot.$(DIST).$(ARCH)
 # Must be declared before the include
 # Include Configuration Files
 # ----------------------------------------------------------------------------
+ifneq ($(wildcard common/buildenv/Makefile.vars),)
 include ./common/buildenv/Makefile.vars
+endif
 
 DEB_OUT_DIR := $(shell readlink -f $(OUT_DIR))/deb.$(DIST).$(ARCH)
 LOCAL_REPO_PATH := $(DEB_OUT_DIR)/raw
@@ -340,10 +342,11 @@ help:
 update:
 	@echo "Updating Pakste:"
 	@wget -qO- https://github.com/kakwa/pakste/archive/refs/heads/main.tar.gz | tar --strip-components=1 -xz
-	@echo "Don't forget to review and commit:"
-	@echo " * git diff"
-	@echo " * git add ./"
-	@echo " * git commit -m 'update pakste - upstream commit: $(shell  wget -qO- https://api.github.com/repos/kakwa/pakste/commits/main | grep '\"sha\"' | head -1 | sed 's/.*"\([^"]*\)",/\1/')'"
+	@echo "Don't forget to review and commit:\n"
+	@echo "git status"
+	@echo "git diff"
+	@echo "git add ./"
+	@echo "git commit -m 'update pakste - upstream commit: $(shell  wget -qO- https://api.github.com/repos/kakwa/pakste/commits/main | grep '\"sha\"' | head -1 | sed 's/.*"\([^"]*\)",/\1/')'"
 
 github_matrix:
 	@./common/buildenv/gh_matrix_gen.sh -r "$(RPM_ALL_TARGETS)" -d "$(DEB_ALL_TARGETS)"
