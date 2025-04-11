@@ -38,17 +38,17 @@ Pakste
 Presentation
 ============
 
-**Pakste** is a toolkit for developers working with Debian- and Red Hat-based distributions who need reasonably consistent and
-reproducible package builds across different environments, without the hassle of setting up build and hosting servers.
+**Pakste** is a toolkit for developers working with Debian and Red Hat-based distributions who need reasonably consistent and
+reproducible package builds across different environments, without the hassle of setting up and maintaining build servers.
 
 **Key features**:
 
-* Wrapper & integration between the numerous ``.rpm`` and ``.deb`` build & repo tools and providing easier to remember commands like ``make rpm_chroot`` or ``make deb_chroot``.
+* Wrapper & integration between the numerous ``.rpm`` and ``.deb`` build & repo management tools, providing easier to remember commands like ``make rpm_chroot`` or ``make deb_chroot``.
 * Easy packaging bootstrapping.
 * Provide various source code recovery helpers to easily package upstream repositories with a good level reproducibility.
 * Multi-Distribution & CPU Architecture targeting thanks to ``mock``/``pbuilder`` & ``binfmt`` respectively.
 * Build dependencies consistency, again, thanks to ``mock``/``pbuilder`` and their disposable build containers.
-* Github Action workflow for automated builds and publication via Github Pages (easily customizable for other destinations).
+* Github Action Workflow for automated builds and publication via Github Pages (easily customizable for other destinations).
 
 .. build_deps_start
 

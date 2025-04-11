@@ -167,16 +167,6 @@ After configuring the Makefile, and whenever you update the upstream version, (r
 
 This downloads the upstream source and creates a MANIFEST file with checksums to ensure upstream is not doing something iffy.
 
-.. note::
-
-    In case of checksum error, an error like the following one will be displayed:
-
-    .. sourcecode:: bash
-
-        [ERROR] Bad checksum for 'https://github.com/kakwa/mk-sh-skel/archive/1.0.0.tar.gz'
-        expected: 2cdeaa0cd4ddf624b5bc7ka5dbdeb4c3dbe77df09eb58bac7621ee7b
-        got:      1cdea044ddf624b5bc7465dbdeb4c3dbe77df09eb58bac7621ee7b64
-
 Version Specific Packaging
 --------------------------
 

@@ -8,6 +8,8 @@ Here are a few projects using Pakste:
 
 * `Debian/Ubuntu packaging for RPM/Mock <https://github.com/kakwa/debian-rpm-build-tools>`_ (itself a Pakste dependency).
 * `Misc Open Feature Flag packages <https://github.com/funwithfeatureflags/fffpkg>`_.
+* `Packages for Author's projects <https://github.com/kakwa/kakwalab-pkg>`_.
+* `Misc Packages from upstream projects <https://github.com/kakwa/misc-pkg>`_.
 
 Makefile Targets
 ----------------
@@ -137,125 +139,94 @@ Repository Targets
      - *none*
      - Set to ``skip`` to continue building repos despite package failures
 
-Scripts
--------
-
-Package Creation Tool
-~~~~~~~~~~~~~~~~~~~~~
+Package Initialization Tool
+---------------------------
 
 Initialize a new package:
+
 .. sourcecode:: bash
 
     ./common/init_pkg.sh -n <PKG_NAME>
 
-Internal Scripts
-~~~~~~~~~~~~~~~~
 
-Version comparator utility:
+Makefile Helper Variables
+-------------------------
 
-.. sourcecode:: bash
+These variables are defined in the build environment and are commonly used in package building:
 
-   ./common/buildenv/compare_version.sh -h
+.. list-table::
+   :header-rows: 1
+   :widths: 20 15 65
 
-    Usage: compare_version.sh -v <VERSION_1> -o <OP> -V <VERSION_2>
-    
-    Arguments:
-      -v <VERSION_1> : The first version (left of the comparison operator).
-      -o <OP>        : The comparison operator ('>', '>=', '<', '<=', '=').
-      -V <VERSION_2> : The second version (right of the comparison operator).
+   * - Variable
+     - Default
+     - Description
+   * - ``WGS``
+     - *none*
+     - Helper command for wget-based source recovery and manifest generation. Uses wget_sum.sh with manifest and cache directory configuration.
+   * - ``GS``
+     - *none*
+     - Helper command for git-based source recovery and manifest generation. Uses git_sum.sh with manifest and cache directory configuration.
+   * - ``SOURCE_DIR``
+     - ``$(BUILD_DIR)/$(PKGNAME)-$(VERSION)``
+     - Directory where source files are extracted during the build process.
+   * - ``SOURCE_ARCHIVE``
+     - ``$(BUILD_DIR)/$(PKGNAME)_$(VERSION).orig.tar.gz``
+     - Path to the source archive file that will be created during the build process.
 
-Distribution metadata recovery utility:
+Source Recovery Helpers Arguments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. sourcecode:: bash
+The source recovery helpers (``WGS`` and ``GS``) expose the following arguments to users:
 
-   ./common/buildenv/get_dist.sh -h
+.. list-table::
+   :header-rows: 1
+   :widths: 20 15 65
 
-    Usage: get_dist.sh <distro_version>
-    
-    Maps a distribution name/version to a standardized format.
-    
-    Supported Distributions:
-      - Debian:      deb<N> (e.g., deb10) or codename (e.g., buster)
-      - Ubuntu:      ubu<N>.<M> (e.g., ubu20.04) or codename (e.g., focal)
-      - Fedora:      fc<N> (e.g., fc40)
-      - RHEL/CentOS: el<N> (e.g., el9)
-    
-    Examples:
-      get_dist.sh focal
-      get_dist.sh ubu22.04
-      get_dist.sh fc39
-      get_dist.sh el8
-
-Git Source Recovery & Manifest tool:
-
-.. sourcecode:: bash
-
-   ./common/buildenv/git_sum.sh -h
-
-    Usage: git_sum.sh -u <url> -o <outfile> [OPTIONS]
-    
-    Download files and verify them against a manifest.
-    
-    Required Arguments:
-        -u <url>           URL of the Git repository to download
-        -o <outfile>       Path to output tarball
-    
-    Optional Arguments:
-        -m <manifest>      Path to manifest file (default: ./../MANIFEST)
-        -c                 Update the manifest file with new checksum
-        -C <cache-dir>     Directory for caching downloads
-        -t <tag>          Git tag to check out
-        -r <revision>     Git revision to check out
-        -s                Initialize and update submodules
-        -h                Show this help message
-
-Tool to check a given distribution against an ignore expression:
-
-.. sourcecode:: bash
-
-    ./common/buildenv/skip_flag.sh -h
-
-    usage: skip_flag.sh -i <IGNORE_STRING> -d <DISTRIBUTION> -v <VERSION>
-
-    Check if current dist is to be ignored for build.
-    Will print 'true' to stdout if the dist/version is to be ignored.
-    
-    example:
-      > skip_flag.sh -i '=:el:6 <:deb:8' -d deb -v 7
-      true
-    
-    arguments:
-      -i <IGNORE_STRING>: the ignore string
-      -d <DISTRIBUTION>:  the distribution code name to check
-      -v <VERSION>:       the specific version to check
-    
-    ignore string format:
-    The ignore space is a space separated list of rules.
-    each rule have the format "<op>:<dist>:<version>", with:
-      <op>:      the operation (must be  '>', '>=', '<', '<=' or '=')
-      <dist>:    the distribution code name (examples: 'deb', 'el', 'fc')
-      <version>: the version number to ignore
-
-
-Wget based source recovery & manifest generation utility:
-
-.. sourcecode:: bash
-
-    ./common/buildenv/wget_sum.sh -h
-
-    usage: wget_sum.sh -u <url> -o <outfile> \
-        [-m <manifest file>] [-c] [-C <cache dir>]
-    Download files, checking them against a manifest
-    
-    arguments:
-      -u <url>: url of the file to download
-      -o <outfile>: path to output file
-      -m <manifest file>: path to manifest file (file containing hashes)
-      -c: flag to fill the manifest file
-      -C <cache dir>: directory where to cache downloads
+   * - Argument
+     - Required
+     - Description
+   * - ``-u <url>``
+     - Yes
+     - URL of the source to download
+   * - ``-o <outfile>``
+     - Yes
+     - Path to output file (alternative to -O)
+   * - ``-O <outfile>``
+     - Yes
+     - Path to output file (alternative to -o)
+   * - ``-t <tag>``
+     - No
+     - Git tag to check out (for ``GS`` only)
+   * - ``-r <revision>``
+     - No
+     - Git revision (commit hash) to check out (for ``GS`` only)
+   * - ``-s``
+     - No
+     - Initialize and update Git submodules (for ``GS`` only)
 
 Examples
---------
+~~~~~~~~
+
+Basic Recovery:
+
+.. sourcecode:: make
+
+   $(SOURCE_ARCHIVE): $(CACHE) Makefile MANIFEST | $(SOURCE_DIR)
+       $(WGS) -u $(URL_SRC) -o $(BUILD_DIR)/$(NAME)-$(VERSION).tar.gz
+
+Recovery + Clean-up (upstream `debian/` dir removal):
+
+.. sourcecode::
+
+   $(SOURCE_ARCHIVE): $(CACHE) Makefile MANIFEST | $(SOURCE_DIR)
+       @$(WGS) -u $(URL_SRC) -O $(NAME)-$(VERSION).tar.gz
+       @tar -vxf $(CACHE_DIR)/$(NAME)-$(VERSION).tar.gz -C $(SOURCE_DIR) --strip-components=1
+       @rm -rf -- $(SOURCE_DIR)/debian
+       @$(SOURCE_TAR_CMD)
+
+Pakste Common Commands
+----------------------
 
 In a package directory:
 
@@ -288,3 +259,65 @@ At the root of the repository:
 
     # Clean but keep downloaded sources
     make clean KEEP_CACHE=true
+
+Internal Scripts
+----------------
+
+Version comparator utility:
+
+.. sourcecode:: bash
+
+   # help
+   ./common/buildenv/compare_version.sh -h
+
+   # example
+   ./common/buildenv/compare_version.sh -v 1.0 -o '>' -V 0.9
+    
+Distribution metadata recovery utility:
+
+.. sourcecode:: bash
+
+   # help
+   ./common/buildenv/get_dist.sh -h
+
+   # example
+   ./common/buildenv/get_dist.sh ubu22.04
+
+Git Source Recovery & Manifest tool:
+
+.. sourcecode:: bash
+
+   # help
+   ./common/buildenv/git_sum.sh -h
+
+   # example
+   ./common/buildenv/git_sum.sh -m ./MANIFEST \
+       -C "./cache/" \
+       -u https://github.com/Spotifyd/spotifyd/ \
+       -t v0.4.0 \
+       -o ./spotifyd_0.4.0.orig.tar.gz \
+       -c # update Manifest
+
+Wget based source recovery & manifest generation utility:
+
+.. sourcecode:: bash
+
+   # help
+   ./common/buildenv/wget_sum.sh -h
+
+   # example
+   ./common/buildenv/wget_sum.sh -m ./MANIFEST \
+       -C "./cache/" \
+       -u https://github.com/Spotifyd/spotifyd/archive/refs/tags/v0.4.1.tar.gz \
+       -o ./spotifyd_0.4.1.orig.tar.gz \
+       -c # update manifest
+
+Tool to check a given distribution against an ignore expression:
+
+.. sourcecode:: bash
+
+   # help
+   ./common/buildenv/skip_flag.sh -h
+
+   # example:
+   ./common/buildenv/skip_flag.sh -i '=:el:6 <:deb:8' -d deb -v 7

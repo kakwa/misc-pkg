@@ -66,3 +66,8 @@ Commit:
     git add ./
     git commit -a -m 'init'
     git push origin main
+
+.. warning::
+
+   Don't customize the ``common/`` directory content and the ``Makefile`` and ``README.rst`` files.
+   These resources are overwritten during Pakste updates.
