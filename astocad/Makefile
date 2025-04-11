@@ -2,15 +2,16 @@
 NAME = astocad
 
 # Not Versionned so we create our own
-VERSION = 2025.03.22
-COMMIT=467b12d3d1542cab8a7441db5980f1a56378ec50
-COMMIT_BRANDING=6e8c85049df8f2cfe94880a0af9984e8eafdc074
+VERSION = 2025.04.11
+COMMIT=72be6fad1c64cdd7f52518344f85f4d66daa00a9
+COMMIT_BRANDING=2e8578b384ed4182f188a524f21f0edfadbd2f84
 
 # Revision number 
 RELEASE = 1
 
 # URL of the project 
 URL=https://github.com/AstoCAD/FreeCAD/tree/AstoCAD
+URL_BRANDING=https://github.com/AstoCAD/astocad-feedstock
 
 # short summary of what the package provides
 SUMMARY=AstoCAD, an opensource multiplatform 3D parametric modeler based on FreeCAD. 
@@ -48,7 +49,7 @@ SKIP=<=:deb:8 >=:el:0 >=:fc:0 <=:ubu:18.4
 # example of source recovery url
 URL_SRC=https://github.com/AstoCAD/FreeCAD/archive/$(COMMIT).tar.gz
 
-BRANDING_URL_SRC=https://github.com/AstoCAD/astocad-feedstock/archive/$(COMMIT_BRANDING).tar.gz
+BRANDING_URL_SRC=$(URL_BRANDING)/archive/$(COMMIT_BRANDING).tar.gz
 
 # Including common rules and targets 
 include buildenv/Makefile.common
@@ -66,16 +67,9 @@ include buildenv/Makefile.common
 #$(SOURCE_ARCHIVE): $(SOURCE_DIR) $(CACHE) Makefile MANIFEST
 #	$(WGS) -u $(URL_SRC) -o $(SOURCE_ARCHIVE)
 
-
-# more complex case with upstream source rework and rebuilding of the tar
 $(SOURCE_ARCHIVE): $(SOURCE_DIR) $(CACHE) Makefile MANIFEST
-	$(WGS) -u $(URL_SRC) -o $(BUILD_DIR)/$(NAME)-$(VERSION).tar.gz
-	mkdir -p $(BUILD_DIR)/tmp
-	tar -vxf $(BUILD_DIR)/$(NAME)-$(VERSION).tar.gz -C $(BUILD_DIR)/tmp
-	mv $(BUILD_DIR)/tmp/FreeCAD-$(COMMIT)/* $(SOURCE_DIR)
-	$(WGS) -u $(BRANDING_URL_SRC) -o $(BUILD_DIR)/$(NAME)-feedstock-$(VERSION).tar.gz
-	tar -vxf $(BUILD_DIR)/$(NAME)-feedstock-$(VERSION).tar.gz -C $(BUILD_DIR)/tmp
-	mv $(BUILD_DIR)/tmp/*/recipe/branding $(SOURCE_DIR)
-	rm -rf $(BUILD_DIR)/tmp
-	rm -f $(BUILD_DIR)/$(NAME)-$(VERSION).tar.gz
-	$(SOURCE_TAR_CMD)
+	@$(WGS) -u $(URL_SRC) -O $(NAME)-$(VERSION).tar.gz
+	@tar -vxf $(CACHE_DIR)/$(NAME)-$(VERSION).tar.gz -C $(SOURCE_DIR) --strip-components=1
+	@$(WGS) -u $(BRANDING_URL_SRC) -O $(NAME)-feedstock-$(VERSION).tar.gz
+	@tar -vxf $(CACHE_DIR)/$(NAME)-feedstock-$(VERSION).tar.gz -C $(SOURCE_DIR) --strip-components=1
+	@$(SOURCE_TAR_CMD)
