@@ -27,10 +27,10 @@ endif
 	dh $@ 
 
 override_dh_auto_build:
-	GOTOOLCHAIN=auto go build -ldflags="-s -w" -o sccd	
+	GOTOOLCHAIN=auto go build -ldflags="-s -w" -o scc
 
 override_dh_auto_install:
 	mkdir -p $(DEST)/usr/bin
-	install -m 755 sccd $(DEST)/usr/bin
+	install -m 755 scc $(DEST)/usr/bin
 
 override_dh_auto_test:
