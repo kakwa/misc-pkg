@@ -1,0 +1,21 @@
+Source: @NAME@
+Section: misc
+Priority: extra
+Maintainer: @MAINTAINER@ <@MAINTAINER_EMAIL@>
+Build-Depends:
+ debhelper (>= 7.0.50~),
+ dh-golang, 
+ dh-make-golang,
+ make,
+ golang (>= 2:1.21),
+ golang-go (>= 2:1.21),
+ golang-src (>= 2:1.21)
+Standards-Version: 3.8.4
+Homepage: @URL@ 
+X-Python-Version: >= 2.5
+
+Package: @NAME@
+Architecture: any
+Depends: ${misc:Depends}
+Description: @SUMMARY@ 
+ @DESCRIPTION@ 
