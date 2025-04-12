@@ -23,7 +23,7 @@ From there, follow the instructions:
     git diff
     
     And commit:
-    git commit -a -m 'update pakste - upstream commit:   "sha": "a867e31dd63ef5aced6fb69995c9e072c74267c1",'
+    git commit -a -m 'update pakste - upstream commit: a867e31dd63ef5a...'
     git push
 
 Sudoers Configuration
@@ -93,7 +93,7 @@ If you need access (for example, to use `go get` or `npm install`), add the foll
     COWBUILD_BUILD_ADDITIONAL_ARGS=--use-network yes
     MOCK_BUILD_ADDITIONAL_ARGS=--enable-network
 
-Tmpfs
+TMPFS
 -----
 
 If you have RAM to spare, using tmpfs mounts can significantly accelerate the build process.
@@ -169,7 +169,7 @@ Then Create the package `Makefile`:
     
     cat > Makefile << EOF
     NAME=${PACKAGE_NAME}
-    VERSION=\$(shell { git describe --tags --dirty 2>/dev/null || echo '0.0.0'; } | sed 's/-/./g')
+    VERSION=\$(shell {git describe --tags --dirty || echo '0.0.0';}|sed 's/-/./g')
     RELEASE=1
     URL=${REPO_URL}
     SUMMARY=\$(NAME)

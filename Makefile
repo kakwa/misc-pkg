@@ -350,7 +350,7 @@ update:
 		echo 'git status' ;\
 		echo 'git diff' ;\
 		echo "\nAnd commit:"; \
-		echo "git commit -a -m 'update pakste - upstream commit: $$(wget -qO- https://api.github.com/repos/kakwa/pakste/commits/main | grep '\"sha\"' | head -1 | sed 's/.*\"\\([a-f0-9]*\\)\".*/\\1/')'"; \
+		echo "git commit -a -m 'update pakste - upstream commit: $$(wget -qO- https://api.github.com/repos/kakwa/pakste/commits/main | grep '\"sha\"' | head -1 | sed 's/.*"\([a-f0-9]*\)".*/\1/')'"; \
 		echo "git push"; \
 	else \
 		echo "Not inside a Git repository. Skipping Git review steps."; \

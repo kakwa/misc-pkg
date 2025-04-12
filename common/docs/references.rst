@@ -1,16 +1,6 @@
 Reference
 =========
 
-Projects Using Pakste
----------------------
-
-Here are a few projects using Pakste:
-
-* `Debian/Ubuntu packaging for RPM/Mock <https://github.com/kakwa/debian-rpm-build-tools>`_ (itself a Pakste dependency).
-* `Misc Open Feature Flag packages <https://github.com/funwithfeatureflags/fffpkg>`_.
-* `Packages for Author's projects <https://github.com/kakwa/kakwalab-pkg>`_.
-* `Misc Packages from upstream projects <https://github.com/kakwa/misc-pkg>`_.
-
 Makefile Targets
 ----------------
 
@@ -24,6 +14,9 @@ Miscellaneous Targets
    * - Target
      - Level
      - Description
+   * - ``update``
+     - repo/root
+     - Update Pakste to latest version
    * - ``help``
      - package & repo/root
      - Display available targets and their descriptions
@@ -152,36 +145,31 @@ Initialize a new package:
 Makefile Helper Variables
 -------------------------
 
-These variables are defined in the build environment and are commonly used in package building:
+The following ``Makefile`` variables can be leverage for source recovery & preparation:
 
 .. list-table::
    :header-rows: 1
-   :widths: 20 15 65
+   :widths: 20 85
 
    * - Variable
-     - Default
      - Description
-   * - ``WGS``
-     - *none*
-     - Helper command for wget-based source recovery and manifest generation. Uses wget_sum.sh with manifest and cache directory configuration.
-   * - ``GS``
-     - *none*
-     - Helper command for git-based source recovery and manifest generation. Uses git_sum.sh with manifest and cache directory configuration.
-   * - ``SOURCE_DIR``
-     - ``$(BUILD_DIR)/$(PKGNAME)-$(VERSION)``
-     - Directory where source files are extracted during the build process.
-   * - ``SOURCE_ARCHIVE``
-     - ``$(BUILD_DIR)/$(PKGNAME)_$(VERSION).orig.tar.gz``
-     - Path to the source archive file that will be created during the build process.
+   * - ``$(WGS)``
+     - Helper command for source recovery. Wrapper for wget_sum.sh with manifest and cache paths option already set.
+   * - ``$(GS)``
+     - Helper command for git-based source recovery. Wrapper for git_sum.sh with manifest and cache paths option already set.
+   * - ``$(SOURCE_DIR)``
+     - Base directory where source files must be put. Works in conjuction with ``$(SOURCE_TAR_CMD)``
+   * - ``$(SOURCE_TAR_CMD)``
+     - Helper to generate the source archive from the content in ``$(SOURCE_DIR)``
 
 Source Recovery Helpers Arguments
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The source recovery helpers (``WGS`` and ``GS``) expose the following arguments to users:
+The source recovery helpers (``$(WGS)`` and ``$(GS)``) expose the following arguments to users:
 
 .. list-table::
    :header-rows: 1
-   :widths: 20 15 65
+   :widths: 20 10 70
 
    * - Argument
      - Required
@@ -191,10 +179,10 @@ The source recovery helpers (``WGS`` and ``GS``) expose the following arguments 
      - URL of the source to download
    * - ``-o <outfile>``
      - Yes
-     - Path to output file (alternative to -O)
+     - Path to output file
    * - ``-O <outfile>``
      - Yes
-     - Path to output file (alternative to -o)
+     - Path to output file (alternative to -o, only create archive in <cache directory>)
    * - ``-t <tag>``
      - No
      - Git tag to check out (for ``GS`` only)
@@ -208,16 +196,23 @@ The source recovery helpers (``WGS`` and ``GS``) expose the following arguments 
 Examples
 ~~~~~~~~
 
-Basic Recovery:
+Basic HTTP Recovery:
 
 .. sourcecode:: make
 
    $(SOURCE_ARCHIVE): $(CACHE) Makefile MANIFEST | $(SOURCE_DIR)
        $(WGS) -u $(URL_SRC) -o $(BUILD_DIR)/$(NAME)-$(VERSION).tar.gz
 
+Basic Git Recovery:
+
+.. sourcecode:: make
+
+   $(SOURCE_ARCHIVE): $(CACHE) Makefile MANIFEST | $(SOURCE_DIR)
+       $(GS) -u $(URL_GIT) -t "v$(VERSION)" -o $(BUILD_DIR)/$(NAME)-$(VERSION).tar.gz
+
 Recovery + Clean-up (upstream `debian/` dir removal):
 
-.. sourcecode::
+.. sourcecode:: make
 
    $(SOURCE_ARCHIVE): $(CACHE) Makefile MANIFEST | $(SOURCE_DIR)
        @$(WGS) -u $(URL_SRC) -O $(NAME)-$(VERSION).tar.gz
@@ -248,14 +243,20 @@ At the root of the repository:
     # Build a complete RPM repository, continuing on errors
     make rpm_repo DIST=el9 ERROR=skip
 
+.. sourcecode:: bash
+
     # Build every deb targets
     make deb_all_repos -j4
 
     # Build every rpm targets
     make rpm_all_repos -j4
 
+.. sourcecode:: bash
+
     # Build everything
     make -j4
+
+.. sourcecode:: bash
 
     # Clean but keep downloaded sources
     make clean KEEP_CACHE=true
@@ -270,6 +271,8 @@ Version comparator utility:
    # help
    ./common/buildenv/compare_version.sh -h
 
+.. sourcecode:: bash
+
    # example
    ./common/buildenv/compare_version.sh -v 1.0 -o '>' -V 0.9
     
@@ -280,6 +283,8 @@ Distribution metadata recovery utility:
    # help
    ./common/buildenv/get_dist.sh -h
 
+.. sourcecode:: bash
+
    # example
    ./common/buildenv/get_dist.sh ubu22.04
 
@@ -289,6 +294,8 @@ Git Source Recovery & Manifest tool:
 
    # help
    ./common/buildenv/git_sum.sh -h
+
+.. sourcecode:: bash
 
    # example
    ./common/buildenv/git_sum.sh -m ./MANIFEST \
@@ -305,6 +312,8 @@ Wget based source recovery & manifest generation utility:
    # help
    ./common/buildenv/wget_sum.sh -h
 
+.. sourcecode:: bash
+
    # example
    ./common/buildenv/wget_sum.sh -m ./MANIFEST \
        -C "./cache/" \
@@ -318,6 +327,8 @@ Tool to check a given distribution against an ignore expression:
 
    # help
    ./common/buildenv/skip_flag.sh -h
+
+.. sourcecode:: bash
 
    # example:
    ./common/buildenv/skip_flag.sh -i '=:el:6 <:deb:8' -d deb -v 7

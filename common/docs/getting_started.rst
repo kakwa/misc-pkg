@@ -69,5 +69,14 @@ Commit:
 
 .. warning::
 
-   Don't customize the ``common/`` directory content and the ``Makefile`` and ``README.rst`` files.
-   These resources are overwritten during Pakste updates.
+    Don't customize the following files & directory:
+
+    * ``common/``
+    * ``.github/workflows/build-test.yml``
+    * ``.github/workflows/repos.yml``
+    * ``.github/workflows/vulncheck.yml``
+    * ``.github/workflows/docs.yml``
+    * ``Makefile``
+    * ``README.rst``
+    
+    These resources are overwritten during Pakste updates.
