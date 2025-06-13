@@ -5,6 +5,7 @@ NAME = astocad
 VERSION = 2025.05.22
 COMMIT=f3061debedacda10df4b447d9dedc891c38a6c64
 COMMIT_BRANDING=31157e96409b64b6f665eba45219b27638d65004
+COMMIT_ADDONMANAGER=69a6e0dc7b8f5fe17547f4d1234df1617b78c45e
 
 # Revision number 
 RELEASE = 1
@@ -12,6 +13,7 @@ RELEASE = 1
 # URL of the project 
 URL=https://github.com/AstoCAD/FreeCAD/tree/AstoCAD
 URL_BRANDING=https://github.com/AstoCAD/astocad-feedstock
+URL_ADDONMANAGER=https://github.com/FreeCAD/AddonManager
 
 # short summary of what the package provides
 SUMMARY=AstoCAD, an opensource multiplatform 3D parametric modeler based on FreeCAD. 
@@ -73,4 +75,7 @@ $(SOURCE_ARCHIVE): $(SOURCE_DIR) $(CACHE) Makefile MANIFEST
 	@$(WGS) -u $(BRANDING_URL_SRC) -O $(NAME)-feedstock-$(VERSION).tar.gz
 	@tar -vxf $(CACHE_DIR)/$(NAME)-feedstock-$(VERSION).tar.gz -C  $(SOURCE_DIR) \
 		--strip-components=2 -- $$(tar -tzf $(CACHE_DIR)/$(NAME)-feedstock-$(VERSION).tar.gz | grep '^.*/recipe/branding/$$')
+	@mkdir -p $(SOURCE_DIR)/src/Mod/AddonManager
+	@$(WGS) -u $(URL_ADDONMANAGER)/archive/$(COMMIT_ADDONMANAGER).tar.gz -O addonmanager.tar.gz
+	@tar -xf $(CACHE_DIR)/addonmanager.tar.gz -C $(SOURCE_DIR)/src/Mod/AddonManager --strip-components=1
 	@$(SOURCE_TAR_CMD)
