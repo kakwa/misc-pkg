@@ -2,8 +2,8 @@
 NAME = coin3
 
 # Version
-VERSION=4.0.3.2
-COMMIT=8243eaa0da46f89b2ab646e962d179c8c7d90d35
+VERSION=4.0.4.1
+COMMIT=d5a0bc570214cecf9a21a8ae9c5183b3216a195f
 
 # Revision number 
 RELEASE = 1
