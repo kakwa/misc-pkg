@@ -2,13 +2,13 @@
 NAME = globalprotect-openconnect
 
 # Version
-VERSION = 1.4.9
+VERSION = 1.5.1
 
 # Revision number 
 RELEASE = 1
 
 # URL of the project 
-URL=https://github.com/yuezk/GlobalProtect-openconnect/
+URL=https://github.com/kakwa/GlobalProtect-openconnect/
 
 # short summary of what the package provides
 SUMMARY=A GlobalProtect VPN client (GUI) based on OpenConnect.
@@ -29,12 +29,16 @@ LICENSE=GPLv3
 #
 SKIP=<=:deb:8 >=:el:0 >=:fc:0 <=:ubu:18.4
 
+# Allow network for thirdparties/subprojects
+COWBUILD_BUILD_ADDITIONAL_ARGS=--use-network yes
+MOCK_BUILD_ADDITIONAL_ARGS=--enable-network
+
 ###############################################################################
 # Rule #
 ########
 
 # example of source recovery url
-URL_SRC=$(URL)/releases/download/v$(VERSION)/globalprotect-openconnect-$(VERSION).tar.gz
+URL_SRC=$(URL)/archive/refs/tags/v$(VERSION).tar.gz
 
 # Including common rules and targets 
 include buildenv/Makefile.common
