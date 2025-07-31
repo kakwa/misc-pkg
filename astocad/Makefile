@@ -6,6 +6,7 @@ VERSION=2025.08.01
 COMMIT=214716b2833df45ffb7798a82ae557f870886fc6
 COMMIT_BRANDING=611b18411669156fa9a66735e7017ec3a2118754
 COMMIT_ADDONMANAGER=34dffc480bc4a60ba44ec4ceeff042fc1e86fa7a
+COMMIT_ONDSELSOLVER=09d6175a2ba69e7016fcecc4f384946a2f84f92d
 
 # Revision number 
 RELEASE = 1
@@ -14,6 +15,7 @@ RELEASE = 1
 URL=https://github.com/AstoCAD/FreeCAD/tree/AstoCAD
 URL_BRANDING=https://github.com/AstoCAD/astocad-feedstock
 URL_ADDONMANAGER=https://github.com/FreeCAD/AddonManager
+URL_ONDSELSOLVER=https://github.com/FreeCAD/OndselSolver
 
 # short summary of what the package provides
 SUMMARY=AstoCAD, an opensource multiplatform 3D parametric modeler based on FreeCAD. 
@@ -78,4 +80,6 @@ $(SOURCE_ARCHIVE): $(SOURCE_DIR) $(CACHE) Makefile MANIFEST
 	@mkdir -p $(SOURCE_DIR)/src/Mod/AddonManager
 	@$(WGS) -u $(URL_ADDONMANAGER)/archive/$(COMMIT_ADDONMANAGER).tar.gz -O addonmanager.tar.gz
 	@tar -xf $(CACHE_DIR)/addonmanager.tar.gz -C $(SOURCE_DIR)/src/Mod/AddonManager --strip-components=1
+	@$(WGS) -u $(URL_ONDSELSOLVER)/archive/$(COMMIT_ONDSELSOLVER).tar.gz -O ondselsolver.tar.gz
+	@tar -xf $(CACHE_DIR)/addonmanager.tar.gz -C $(SOURCE_DIR)/src/3rdParty/OndselSolver --strip-components=1
 	@$(SOURCE_TAR_CMD)

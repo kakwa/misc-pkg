@@ -35,7 +35,7 @@ extra_flags += \
 -DCMAKE_INSTALL_PREFIX="/usr/share/freecad" \
 -DPYTHON_CONFIG_SUFFIX=".cpython-$(py3ver)-$(DEB_HOST_MULTIARCH)" \
 -DBUILD_WEB="$(build_web)" \
--DBUILD_ASSEMBLY="Off"
+-DBUILD_ASSEMBLY="ON"
 
 py3_flags = \
 -DPYTHON_EXECUTABLE="/usr/bin/python3" \
