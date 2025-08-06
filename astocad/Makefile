@@ -81,5 +81,5 @@ $(SOURCE_ARCHIVE): $(SOURCE_DIR) $(CACHE) Makefile MANIFEST
 	@$(WGS) -u $(URL_ADDONMANAGER)/archive/$(COMMIT_ADDONMANAGER).tar.gz -O addonmanager.tar.gz
 	@tar -xf $(CACHE_DIR)/addonmanager.tar.gz -C $(SOURCE_DIR)/src/Mod/AddonManager --strip-components=1
 	@$(WGS) -u $(URL_ONDSELSOLVER)/archive/$(COMMIT_ONDSELSOLVER).tar.gz -O ondselsolver.tar.gz
-	@tar -xf $(CACHE_DIR)/addonmanager.tar.gz -C $(SOURCE_DIR)/src/3rdParty/OndselSolver --strip-components=1
+	@tar -xf $(CACHE_DIR)/ondselsolver.tar.gz -C $(SOURCE_DIR)/src/3rdParty/OndselSolver --strip-components=1
 	@$(SOURCE_TAR_CMD)
