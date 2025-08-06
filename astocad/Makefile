@@ -3,19 +3,22 @@ NAME = astocad
 
 # Not Versionned so we create our own
 VERSION=2025.08.01
+URL=https://github.com/AstoCAD/FreeCAD/tree/AstoCAD
 COMMIT=214716b2833df45ffb7798a82ae557f870886fc6
+
+URL_BRANDING=https://github.com/AstoCAD/astocad-feedstock
 COMMIT_BRANDING=611b18411669156fa9a66735e7017ec3a2118754
+
+URL_ADDONMANAGER=https://github.com/FreeCAD/AddonManager
 COMMIT_ADDONMANAGER=34dffc480bc4a60ba44ec4ceeff042fc1e86fa7a
+
+URL_ONDSELSOLVER=https://github.com/FreeCAD/OndselSolver
 COMMIT_ONDSELSOLVER=09d6175a2ba69e7016fcecc4f384946a2f84f92d
 
 # Revision number 
 RELEASE = 1
 
 # URL of the project 
-URL=https://github.com/AstoCAD/FreeCAD/tree/AstoCAD
-URL_BRANDING=https://github.com/AstoCAD/astocad-feedstock
-URL_ADDONMANAGER=https://github.com/FreeCAD/AddonManager
-URL_ONDSELSOLVER=https://github.com/FreeCAD/OndselSolver
 
 # short summary of what the package provides
 SUMMARY=AstoCAD, an opensource multiplatform 3D parametric modeler based on FreeCAD. 
@@ -58,18 +61,14 @@ BRANDING_URL_SRC=$(URL_BRANDING)/archive/$(COMMIT_BRANDING).tar.gz
 # Including common rules and targets 
 include buildenv/Makefile.common
 
-# preparation hook for sources
-# source archive must be recovered here, optionaly reworked, and
-# moved to $(SOURCE_ARCHIVE) (the expected path of the source archive for the
-# rest of the build)
+# preparation hook for sources.
 #
-# $(WGS) should be the prefered way to recover archives
-# (add checksum against a manifest file).
-# use 'make manifest' to generate/update this manifest file.
-
-# Example of simple recovery, with good upstream
-#$(SOURCE_ARCHIVE): $(SOURCE_DIR) $(CACHE) Makefile MANIFEST
-#	$(WGS) -u $(URL_SRC) -o $(SOURCE_ARCHIVE)
+# Includes
+# * Ondsel Solver (necessary for the assembly workbench)
+# * AddonManager (addon downloader)
+# * Branding (replace the FreeCAD one)
+#
+# Rename base directory
 
 $(SOURCE_ARCHIVE): $(SOURCE_DIR) $(CACHE) Makefile MANIFEST
 	@$(WGS) -u $(URL_SRC) -O $(NAME)-$(VERSION).tar.gz
