@@ -82,3 +82,6 @@ override_dh_strip_nondeterminism:
 
 override_dh_missing:
 	dh_missing --list-missing
+
+override_dh_dwz:
+	-dh_dwz
