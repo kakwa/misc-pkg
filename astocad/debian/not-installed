@@ -4,3 +4,4 @@ usr/share/freecad/include/gmock/*
 usr/lib/freecad-python3/lib/libE57Format.a
 usr/share/doc/freecad-doc/LICENSE.html
 usr/share/freecad/include/E57Format/E57Export.h
+usr/share/freecad/include/OndselSolver
