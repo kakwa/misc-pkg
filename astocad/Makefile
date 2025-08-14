@@ -12,13 +12,13 @@ URL_BRANDING=https://github.com/AstoCAD/astocad-feedstock
 COMMIT_BRANDING=a7133a990bcd28265fbbdba43136abab97844710
 
 URL_ADDONMANAGER=https://github.com/FreeCAD/AddonManager
-COMMIT_ADDONMANAGER=e8f58715d31934749e54bdb4b355244ad58ecc85
+COMMIT_ADDONMANAGER=34dffc480bc4a60ba44ec4ceeff042fc1e86fa7a
 
 URL_ONDSELSOLVER=https://github.com/FreeCAD/OndselSolver
 COMMIT_ONDSELSOLVER=09d6175a2ba69e7016fcecc4f384946a2f84f92d
 
 # Revision number 
-RELEASE = 1
+RELEASE=2
 
 # short summary of what the package provides
 SUMMARY=AstoCAD, an opensource multiplatform 3D parametric modeler based on FreeCAD. 
