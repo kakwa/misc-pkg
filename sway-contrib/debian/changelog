@@ -1,0 +1,26 @@
+sway-contrib (1.10.1-1) unstable; urgency=medium
+
+  * New upstream release (Closes: #1094832)
+
+ -- Birger Schacht <birger@debian.org>  Sat, 08 Feb 2025 12:08:42 +0100
+
+sway-contrib (1.10-contrib.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * Update paths in d/grimshot.install
+  * Add bash-completion to grimshot package
+
+ -- Birger Schacht <birger@debian.org>  Tue, 31 Dec 2024 14:25:34 +0100
+
+sway-contrib (1.9-contrib.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * d/control: replace Build-Depends: pkg-config with pkgconf
+
+ -- Birger Schacht <birger@debian.org>  Fri, 26 Apr 2024 11:25:49 +0200
+
+sway-contrib (1.8.1+20240128-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #1059355)
+
+ -- Birger Schacht <birger@debian.org>  Sun, 28 Jan 2024 10:11:30 +0100

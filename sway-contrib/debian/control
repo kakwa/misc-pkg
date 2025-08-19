@@ -1,0 +1,21 @@
+Source: sway-contrib
+Section: x11
+Priority: optional
+Maintainer: Birger Schacht <birger@debian.org>
+Build-Depends: debhelper-compat (= 13),
+               bash-completion,
+               pkgconf,
+               scdoc,
+Standards-Version: 4.6.2
+Homepage: https://github.com/OctopusET/sway-contrib/
+Rules-Requires-Root: no
+Vcs-Git: https://salsa.debian.org/swaywm-team/sway-contrib.git
+Vcs-Browser: https://salsa.debian.org/swaywm-team/sway-contrib
+
+Package: grimshot
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}, ${shlibs:Depends}, grim, slurp, sway, wl-clipboard, jq, libnotify-bin
+Description: Easy to use screenshot tool for sway
+ grimshot is a shell helper for creating screenshot in sway. It uses the
+ grim screenshot utility some other small tools like slurp, wl-copy and jq.
