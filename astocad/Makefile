@@ -2,17 +2,17 @@
 NAME=astocad
 
 # Not Versionned so we create our own
-VERSION=2025.08.28
+VERSION=2025.09.12
 
 # Projects & Assets revision to recover
 URL=https://github.com/AstoCAD/FreeCAD/tree/AstoCAD
-COMMIT=56a4f22c49e6bedaaf36eea10decc6a0b9b44f71
+COMMIT=abe9eee6e627da831ed00b071e3a591707036c3e
 
 URL_BRANDING=https://github.com/AstoCAD/astocad-feedstock
 COMMIT_BRANDING=a705841fe792dafca4af36a0bda075ee7de396c2
 
 URL_ADDONMANAGER=https://github.com/FreeCAD/AddonManager
-COMMIT_ADDONMANAGER=212fdbaf783aac8b13ada427d5a3a3789263af90
+COMMIT_ADDONMANAGER=044c37959a0aa6b202283733e6f8e163531ab9e3
 
 URL_ONDSELSOLVER=https://github.com/FreeCAD/OndselSolver
 COMMIT_ONDSELSOLVER=bacb65f9c0deebe548f0b9729ecae5f394e059a6
