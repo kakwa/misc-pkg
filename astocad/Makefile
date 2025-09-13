@@ -6,7 +6,7 @@ VERSION=2025.09.12
 
 # Projects & Assets revision to recover
 URL=https://github.com/AstoCAD/FreeCAD/tree/AstoCAD
-COMMIT=abe9eee6e627da831ed00b071e3a591707036c3e
+COMMIT=af21562b62145a75e6b4c1aee966ba967ff0c103
 
 URL_BRANDING=https://github.com/AstoCAD/astocad-feedstock
 COMMIT_BRANDING=a705841fe792dafca4af36a0bda075ee7de396c2
