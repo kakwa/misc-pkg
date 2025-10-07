@@ -1,0 +1,42 @@
+#!/usr/bin/make -f
+include /usr/share/dpkg/pkg-info.mk
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+DEST=$$(pwd)/debian/@NAME@
+
+BIN_NAME = typst
+BIN_DESCRIPTION = "Typst CLI"
+
+%:
+	dh $@ --buildsystem cargo
+
+override_dh_auto_configure:
+	mkdir -p debian/cargo_home/
+	CARGO_HOME=`pwd`/debian/cargo_home/ cargo fetch
+	touch debian/cargo_home/config.toml
+
+override_dh_auto_install:
+	CARGO_HOME=`pwd`/debian/cargo_home/ CARGO_BUILD_TARGET_DIR=/tmp CARGO_TARGET_DIR=/tmp cargo install --path ./crates/typst-cli --bin typst --root debian/$(BIN_NAME)/usr/
+	# Remove cargo metadata files not needed in runtime package
+	rm -f debian/$(BIN_NAME)/usr/.crates.toml debian/$(BIN_NAME)/usr/.crates2.json
+
+override_dh_installman:
+	# Typst provides built-in help; generate a minimal man page
+	help2man \
+		--name $(BIN_DESCRIPTION) \
+		--no-info \
+		--no-discard-stderr \
+		--version-string $(DEB_VERSION_UPSTREAM) \
+		--output debian/$(BIN_NAME).1 \
+		debian/$(BIN_NAME)/usr/bin/$(BIN_NAME)
+	dh_installman -O--buildsystem=cargo
+
+override_dh_auto_test:

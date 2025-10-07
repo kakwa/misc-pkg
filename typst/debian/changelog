@@ -1,0 +1,6 @@
+typst (0.13.1.101-1) unstable; urgency=medium
+
+  * Package Typst CLI from commit dd1861023d3c13e77e129871993b4b743bf37d5b.
+
+ -- @MAINTAINER@ <@MAINTAINER_EMAIL@>  Tue, 07 Oct 2025 12:00:00 +0000
+
