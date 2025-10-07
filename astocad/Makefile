@@ -2,11 +2,14 @@
 NAME=astocad
 
 # Not Versionned so we create our own
-VERSION=2025.09.12
+VERSION=2025.10.08
 
 # Projects & Assets revision to recover
 URL=https://github.com/AstoCAD/FreeCAD/tree/AstoCAD
-COMMIT=af21562b62145a75e6b4c1aee966ba967ff0c103
+#COMMIT=af21562b62145a75e6b4c1aee966ba967ff0c103
+
+#URL=https://github.com/FreeCAD/FreeCAD
+COMMIT=3a8de56ee5cfda0c568f065c208cd888c6f9b05d
 
 URL_BRANDING=https://github.com/AstoCAD/astocad-feedstock
 COMMIT_BRANDING=a705841fe792dafca4af36a0bda075ee7de396c2
@@ -54,7 +57,8 @@ SKIP=<=:deb:8 >=:el:0 >=:fc:0 <=:ubu:18.4
 ########
 
 # example of source recovery url
-URL_SRC=https://github.com/AstoCAD/FreeCAD/archive/$(COMMIT).tar.gz
+#URL_SRC=https://github.com/AstoCAD/FreeCAD/archive/$(COMMIT).tar.gz
+URL_SRC=https://github.com/FreeCAD/FreeCAD/archive/$(COMMIT).tar.gz
 
 BRANDING_URL_SRC=$(URL_BRANDING)/archive/$(COMMIT_BRANDING).tar.gz
 
