@@ -1,4 +1,0 @@
-Tests: build1, build2, build3
-Depends: libcoin-dev, freeglut3-dev, build-essential, xvfb, xauth, cmake
-Restrictions: allow-stderr
-

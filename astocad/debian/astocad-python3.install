@@ -1,5 +1,0 @@
-#!/usr/bin/dh-exec
-usr/share/freecad/bin/FreeCADCmd-Python3 => usr/lib/freecad/bin/freecadcmd-python3
-usr/share/freecad/bin/FreeCAD-Python3 => usr/lib/freecad/bin/freecad-python3
-usr/share/freecad/bin/freecad-thumbnailer
-usr/lib/python3/dist-packages/freecad/
