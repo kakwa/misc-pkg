@@ -44,10 +44,8 @@ sub cargo_version {
 }
 
 sub deb_host_rust_type {
-    open(F, 'printf "include /usr/share/rustc/architecture.mk\n\
-all:\n\
-	echo \$(DEB_HOST_RUST_TYPE)\n\
-" | make --no-print-directory -sf - |');
+    # Use rustc from rustup instead of Debian's architecture.mk
+    open(F, 'rustc -vV | grep "host:" | cut -d" " -f2 |');
     $_ = <F>;
     chomp;
     return $_;
@@ -140,14 +138,24 @@ sub get_sources {
 
 sub configure {
     my $this=shift;
-    doit("cp", "debian/cargo-checksum.json",
-         ".cargo-checksum.json");
+    # Skip cargo-checksum and prepare-debian for rustup-based builds
+    # These are only needed for Debian library packages
+    if (-f "debian/cargo-checksum.json") {
+        doit("cp", "debian/cargo-checksum.json",
+             ".cargo-checksum.json");
+    }
     if (defined $ENV{'CARGO_VENDOR_DIR'}) {
-        doit("/usr/share/cargo/bin/cargo", "prepare-debian", $ENV{'CARGO_VENDOR_DIR'});
-        doit("/usr/share/cargo/bin/dh-cargo-vendored-sources");
-    } else {
+        if (-x "/usr/share/cargo/bin/cargo") {
+            doit("/usr/share/cargo/bin/cargo", "prepare-debian", $ENV{'CARGO_VENDOR_DIR'});
+        }
+        if (-x "/usr/share/cargo/bin/dh-cargo-vendored-sources") {
+            doit("/usr/share/cargo/bin/dh-cargo-vendored-sources");
+        }
+    } elsif (-d "debian/cargo_registry") {
         rm_files("Cargo.lock");
-        doit("/usr/share/cargo/bin/cargo", "prepare-debian", "debian/cargo_registry", "--link-from-system");
+        if (-x "/usr/share/cargo/bin/cargo") {
+            doit("/usr/share/cargo/bin/cargo", "prepare-debian", "debian/cargo_registry", "--link-from-system");
+        }
     }
 }
 
@@ -165,9 +173,11 @@ sub test {
     # Check that the thing compiles. This might fail if e.g. the package
     # requires non-rust system dependencies and the maintainer didn't provide
     # this additional information to debcargo.
-    doit("/usr/share/cargo/bin/cargo", $cmd, @_);
-    # test generating Built-Using fields
-    doit("env", "CARGO_CHANNEL=debug", "/usr/share/cargo/bin/dh-cargo-built-using");
+    doit("cargo", $cmd, @_);
+    # test generating Built-Using fields (optional for rustup builds)
+    if (-x "/usr/share/cargo/bin/dh-cargo-built-using") {
+        doit("env", "CARGO_CHANNEL=debug", "/usr/share/cargo/bin/dh-cargo-built-using");
+    }
 }
 
 sub install {
@@ -193,7 +203,7 @@ sub install {
         # Do the install
         my $destdir = $ENV{'DESTDIR'} || tmpdir($this->{binpkg});
         doit("env", "DESTDIR=$destdir",
-             "/usr/share/cargo/bin/cargo", "install", @_);
+             "cargo", "install", @_);
         if (defined $ENV{'CARGO_VENDOR_DIR'}) {
             if (-e "Cargo.lock") {
                 my $lockfile_dir=tmpdir($this->{binpkg}) . "/usr/share/doc/" . $this->{binpkg};
@@ -203,17 +213,23 @@ sub install {
                 warning("Cargo.lock file not found!");
             }
         }
-        # generate Built-Using fields
-        doit("env", "/usr/share/cargo/bin/dh-cargo-built-using", $this->{binpkg});
+        # generate Built-Using fields (optional for rustup builds)
+        if (-x "/usr/share/cargo/bin/dh-cargo-built-using") {
+            doit("env", "/usr/share/cargo/bin/dh-cargo-built-using", $this->{binpkg});
+        }
     }
 }
 
 sub clean {
     my $this=shift;
-    doit("touch", "--no-create", "-d@" . $ENV{SOURCE_DATE_EPOCH}, ".cargo_vcs_info.json");
-    doit("/usr/share/cargo/bin/cargo", "clean", @_);
+    if (-f ".cargo_vcs_info.json") {
+        doit("touch", "--no-create", "-d@" . $ENV{SOURCE_DATE_EPOCH}, ".cargo_vcs_info.json");
+    }
+    doit("cargo", "clean", @_);
     rm_files(".cargo-checksum.json");
-    doit("rm", "-rf", "debian/cargo_registry");
+    if (-d "debian/cargo_registry") {
+        doit("rm", "-rf", "debian/cargo_registry");
+    }
 }
 
 1
