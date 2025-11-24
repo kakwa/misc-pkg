@@ -2,7 +2,7 @@
 NAME = typst
 
 # Version
-VERSION = 0.13.1.101
+VERSION = 0.14.0.101
 
 # Revision number 
 RELEASE = 1
@@ -27,7 +27,7 @@ LICENSE=Apache-2.0
 #   <dist>:    the distribution code name (examples: 'deb', 'el', 'fc')
 #   <version>: the version number to ignore
 #
-SKIP=<=:deb:14 >=:el:0 >=:fc:0 <=:ubu:25.4
+SKIP=<=:deb:14 >=:el:0 >=:fc:0 <=:ubu:23.10
 
 # Allow network inside chroot/mock for fetching Rust git deps
 COWBUILD_BUILD_ADDITIONAL_ARGS=--use-network yes
@@ -37,7 +37,7 @@ MOCK_BUILD_ADDITIONAL_ARGS=--enable-network
 # Rule #
 ########
 
-UPSTREAM_COMMIT=dd1861023d3c13e77e129871993b4b743bf37d5b
+UPSTREAM_COMMIT=630fbbec415c5d0dd854b62d6039b11dd10c4961
 URL_SRC=$(URL)/archive/$(UPSTREAM_COMMIT).tar.gz
 
 # Including common rules and targets 

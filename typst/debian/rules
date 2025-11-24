@@ -9,6 +9,8 @@ include /usr/share/dpkg/pkg-info.mk
 
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
+export HOME=/tmp
+export PERL5LIB=$(CURDIR)/debian
 
 DEST=$$(pwd)/debian/@NAME@
 
@@ -17,6 +19,10 @@ BIN_DESCRIPTION = "Typst CLI"
 
 %:
 	dh $@ --buildsystem cargo
+
+override_dh_auto_clean:
+	rustup default stable
+	dh_auto_clean
 
 override_dh_auto_configure:
 	mkdir -p debian/cargo_home/

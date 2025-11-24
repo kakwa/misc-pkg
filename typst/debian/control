@@ -4,10 +4,8 @@ Priority: extra
 Maintainer: @MAINTAINER@ <@MAINTAINER_EMAIL@>
 Build-Depends:
  debhelper (>= 7.0.50~),
- cargo,
- rustc (>= 1.88),
- dh-cargo,
- dh-rust,
+ dh-cargo-tools,
+ rustup,
  help2man,
  pkg-config,
  libssl-dev,
