@@ -27,7 +27,7 @@ LICENSE=Apache-2.0
 #   <dist>:    the distribution code name (examples: 'deb', 'el', 'fc')
 #   <version>: the version number to ignore
 #
-SKIP=<=:deb:14 >=:el:0 >=:fc:0 <=:ubu:23.10
+SKIP=<=:deb:12 >=:el:0 >=:fc:0 <=:ubu:23.10
 
 # Allow network inside chroot/mock for fetching Rust git deps
 COWBUILD_BUILD_ADDITIONAL_ARGS=--use-network yes

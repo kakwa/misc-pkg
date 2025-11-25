@@ -4,16 +4,14 @@ Priority: extra
 Maintainer: @MAINTAINER@ <@MAINTAINER_EMAIL@>
 Build-Depends:
  debhelper (>= 7.0.50~),
- cargo,
- rustc,
+ rustup,
+ help2man,
+ pkg-config,
  libasound2-dev,
  libssl-dev,
  libpulse-dev,
  libdbus-1-dev,
- portaudio19-dev,
- dh-cargo,
- help2man,
- dh-rust
+ portaudio19-dev
 Standards-Version: 3.8.4
 Homepage: @URL@ 
 X-Python-Version: >= 2.5

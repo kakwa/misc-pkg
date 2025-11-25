@@ -1,6 +1,20 @@
 #!/usr/bin/make -f
 
 include /usr/share/dpkg/pkg-info.mk
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+export RUSTUP_HOME=/tmp/rustup
+export CARGO_HOME=/tmp/cargo_home
+export CARGO_TARGET_DIR=/tmp/cargo
+export CARGO_TARGET_TMPDIR=/tmp/cargo/tmp
+export PERL5LIB=$(CURDIR)/debian
 
 BIN_NAME = spotifyd
 BIN_DESCRIPTION = "spotify daemon"
@@ -8,13 +22,19 @@ BIN_DESCRIPTION = "spotify daemon"
 %:
 	dh $@ --buildsystem cargo
 
+override_dh_auto_clean:
+	mkdir -p $(CARGO_TARGET_DIR)
+	mkdir -p $(CARGO_TARGET_TMPDIR)
+	mkdir -p $(CARGO_HOME)
+	rustup default stable
+	dh_auto_clean
+
 override_dh_auto_configure:
-	mkdir -p debian/cargo_home/
-	CARGO_HOME=`pwd`/debian/cargo_home/ cargo fetch
-	touch debian/cargo_home/config.toml
 
 override_dh_auto_install:
-	CARGO_HOME=`pwd`/debian/cargo_home/ CARGO_BUILD_TARGET_DIR=/tmp CARGO_TARGET_DIR=/tmp cargo install --path ./ --root debian/$(BIN_NAME)/usr/
+	cargo install --path ./ --root debian/$(BIN_NAME)/usr/
+	# Remove cargo metadata files not needed in runtime package
+	rm -f debian/$(BIN_NAME)/usr/.crates.toml debian/$(BIN_NAME)/usr/.crates2.json
 	mkdir -p debian/$(BIN_NAME)/etc/
 	install -m 644 debian/spotifyd.conf debian/$(BIN_NAME)/etc/
 

@@ -8,8 +8,10 @@ include /usr/share/dpkg/pkg-info.mk
 # This special exception was added by Craig Small in version 0.37 of dh-make.
 
 # Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
-export HOME=/tmp
+export DH_VERBOSE=1
+export HOME=/tmp/cargo/
+export CARGO_TARGET_DIR=/tmp/cargo/
+export CARGO_TARGET_TMPDIR=/tmp/cargo/tmp/
 export PERL5LIB=$(CURDIR)/debian
 
 DEST=$$(pwd)/debian/@NAME@
@@ -21,8 +23,10 @@ BIN_DESCRIPTION = "Typst CLI"
 	dh $@ --buildsystem cargo
 
 override_dh_auto_clean:
-	rustup default stable
-	dh_auto_clean
+	-chmod 777 /tmp
+	-mkdir -p $(CARGO_TARGET_DIR)
+	-mkdir -p $(CARGO_TARGET_TMPDIR)
+	-rustup default stable
 
 override_dh_auto_configure:
 	mkdir -p debian/cargo_home/
