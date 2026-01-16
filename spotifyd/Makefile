@@ -2,7 +2,7 @@
 NAME = spotifyd
 
 # Version
-VERSION = 0.4.2
+VERSION = 0.4.2.101
 
 # Revision number 
 RELEASE = 1
@@ -29,6 +29,7 @@ LICENSE=GPLv3
 #
 SKIP=<=:deb:12 >=:el:0 >=:fc:0 <=:ubu:24.4
 
+# Allow network inside chroot/mock for fetching Rust git deps
 COWBUILD_BUILD_ADDITIONAL_ARGS=--use-network yes
 MOCK_BUILD_ADDITIONAL_ARGS=--enable-network
 
@@ -36,32 +37,17 @@ MOCK_BUILD_ADDITIONAL_ARGS=--enable-network
 # Rule #
 ########
 
-# example of source recovery url
-URL_SRC=$(URL)/archive/refs/tags/v$(VERSION).tar.gz
+UPSTREAM_COMMIT=f31ca1b7549291713a73ff6a10fc83af9a27dbfc
+URL_SRC=$(URL)/archive/$(UPSTREAM_COMMIT).tar.gz
 
 # Including common rules and targets 
 include buildenv/Makefile.common
 
 # preparation hook for sources
-# source archive must be recovered here, optionaly reworked, and
-# moved to $(SOURCE_ARCHIVE) (the expected path of the source archive for the
-# rest of the build)
 #
-# $(WGS) should be the prefered way to recover archives
-# (add checksum against a manifest file).
 # use 'make manifest' to generate/update this manifest file.
-
-# Example of simple recovery, with good upstream
 $(SOURCE_ARCHIVE): $(SOURCE_DIR) $(CACHE) Makefile MANIFEST
-	$(WGS) -u $(URL_SRC) -o $(SOURCE_ARCHIVE)
-
-# more complex case with upstream source rework and rebuilding of the tar
-#$(SOURCE_ARCHIVE): $(SOURCE_DIR) $(CACHE) Makefile MANIFEST
-#	$(WGS) -u $(URL_SRC) -o $(BUILD_DIR)/$(NAME)-$(VERSION).tar.gz
-#	mkdir -p $(BUILD_DIR)/tmp
-#	tar -vxf $(BUILD_DIR)/$(NAME)-$(VERSION).tar.gz -C $(BUILD_DIR)/tmp
-#	rm -rf $(BUILD_DIR)/tmp/$(NAME)-$(VERSION)/debian
-#	mv $(BUILD_DIR)/tmp/$(NAME)-$(VERSION)/* $(SOURCE_DIR)
-#	rm -rf $(BUILD_DIR)/tmp
-#	rm -f $(BUILD_DIR)/$(NAME)-$(VERSION).tar.gz
-#	$(SOURCE_TAR_CMD)
+	@$(WGS) -u $(URL_SRC) -O $(NAME)-$(VERSION).tar.gz
+	@tar -vxf $(CACHE_DIR)/$(NAME)-$(VERSION).tar.gz -C $(SOURCE_DIR) --strip-components=1
+	@rm -rf $(SOURCE_DIR)/debian
+	@$(SOURCE_TAR_CMD)
