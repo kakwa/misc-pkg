@@ -1,0 +1,20 @@
+Source: @NAME@
+Section: python
+Priority: optional
+Maintainer: @MAINTAINER@ <@MAINTAINER_EMAIL@>
+Build-Depends:
+ debhelper (>= 11~),
+ dh-python,
+ python3-all,
+ python3-setuptools,
+ make
+Standards-Version: 4.5.0
+Homepage: @URL@
+Rules-Requires-Root: no
+
+Package: @NAME@
+Architecture: all
+Depends: ${misc:Depends}, ${python3:Depends},
+ python3
+Description: @SUMMARY@
+ @DESCRIPTION@ 
