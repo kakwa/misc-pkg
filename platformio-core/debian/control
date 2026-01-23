@@ -8,21 +8,6 @@ Build-Depends:
  python3-all,
  python3-setuptools,
  python3-pip,
- python3,
- python3-jsonrpc,
- python3-bottle,
- python3-click,
- python3-colorama,
- python3-marshmallow,
- python3-pyelftools,
- python3-serial,
- python3-requests,
- python3-semantic-version,
- python3-starlette,
- python3-tabulate,
- python3-wsproto,
- python3-zeroconf,
- python3-uvicorn,
  make
 Standards-Version: 3.8.4
 Homepage: @URL@ 
@@ -31,7 +16,7 @@ Package: @NAME@
 Architecture: all
 Depends: ${misc:Depends}, ${python3:Depends},
  python3,
- python3-jsonrpc,
+ python3-ajsonrpc,
  python3-bottle,
  python3-click,
  python3-colorama,
