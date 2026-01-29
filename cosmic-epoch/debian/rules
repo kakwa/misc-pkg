@@ -1,0 +1,116 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+# Use all available CPUs for building
+export CARGO_BUILD_JOBS=$(shell nproc)
+
+# Set HOME for Cargo (needed for git dependencies)
+export HOME=$(CURDIR)/debian/cargo_home
+export CARGO_HOME=$(HOME)
+
+# Vendor dependencies to handle submodules
+VENDOR ?= 1
+CLEAN ?= 1
+
+%:
+	dh $@
+
+override_dh_auto_clean:
+	if test "${CLEAN}" = "1"; then \
+		just clean || true; \
+	fi
+	rm -rf debian/cargo_home
+
+override_dh_auto_build:
+	# Create cargo home directory
+	mkdir -p $(HOME)
+	# Build all COSMIC components
+	just build
+
+override_dh_auto_install:
+	# Install cosmic-applets
+	just rootdir=debian/cosmic-applets prefix=/usr cosmic-applets/install
+	
+	# Install cosmic-applibrary
+	just rootdir=debian/cosmic-applibrary prefix=/usr cosmic-applibrary/install
+	
+	# Install cosmic-bg
+	just rootdir=debian/cosmic-bg prefix=/usr cosmic-bg/install
+	
+	# Install cosmic-comp
+	$(MAKE) -C cosmic-comp install DESTDIR=$(CURDIR)/debian/cosmic-comp prefix=/usr
+	
+	# Install cosmic-edit
+	just rootdir=debian/cosmic-edit prefix=/usr cosmic-edit/install
+	
+	# Install cosmic-files
+	just rootdir=debian/cosmic-files prefix=/usr cosmic-files/install
+	
+	# Install cosmic-greeter
+	just rootdir=debian/cosmic-greeter prefix=/usr cosmic-greeter/install
+	
+	# Install cosmic-icons
+	just rootdir=debian/cosmic-icons prefix=/usr cosmic-icons/install
+	
+	# Install cosmic-idle
+	just rootdir=debian/cosmic-idle prefix=/usr cosmic-idle/install
+	
+	# Install cosmic-initial-setup
+	just rootdir=debian/cosmic-initial-setup prefix=/usr cosmic-initial-setup/install
+	
+	# Install cosmic-launcher
+	just rootdir=debian/cosmic-launcher prefix=/usr cosmic-launcher/install
+	
+	# Install cosmic-notifications
+	just rootdir=debian/cosmic-notifications prefix=/usr cosmic-notifications/install
+	
+	# Install cosmic-osd
+	just rootdir=debian/cosmic-osd prefix=/usr cosmic-osd/install
+	
+	# Install cosmic-panel
+	just rootdir=debian/cosmic-panel prefix=/usr cosmic-panel/install
+	
+	# Install cosmic-player
+	just rootdir=debian/cosmic-player prefix=/usr cosmic-player/install
+	
+	# Install cosmic-randr
+	just rootdir=debian/cosmic-randr prefix=/usr cosmic-randr/install
+	
+	# Install cosmic-screenshot
+	just rootdir=debian/cosmic-screenshot prefix=/usr cosmic-screenshot/install
+	
+	# Install cosmic-settings
+	just rootdir=debian/cosmic-settings prefix=/usr cosmic-settings/install
+	
+	# Install cosmic-settings-daemon
+	$(MAKE) -C cosmic-settings-daemon install DESTDIR=$(CURDIR)/debian/cosmic-settings-daemon prefix=/usr
+	
+	# Install cosmic-session
+	just rootdir=debian/cosmic-session prefix=/usr cosmic-session/install
+	
+	# Install cosmic-store
+	just rootdir=debian/cosmic-store prefix=/usr cosmic-store/install
+	
+	# Install cosmic-term
+	just rootdir=debian/cosmic-term prefix=/usr cosmic-term/install
+	
+	# Install cosmic-wallpapers
+	$(MAKE) -C cosmic-wallpapers install DESTDIR=$(CURDIR)/debian/cosmic-wallpapers prefix=/usr
+	
+	# Install cosmic-workspaces-epoch
+	$(MAKE) -C cosmic-workspaces-epoch install DESTDIR=$(CURDIR)/debian/cosmic-workspaces-epoch prefix=/usr
+	
+	# Install pop-launcher
+	just rootdir=debian/pop-launcher pop-launcher/install
+	
+	# Install xdg-desktop-portal-cosmic
+	$(MAKE) -C xdg-desktop-portal-cosmic install DESTDIR=$(CURDIR)/debian/xdg-desktop-portal-cosmic prefix=/usr
+
+override_dh_shlibdeps:
+	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info
+
+override_dh_auto_test:
+	# Skip tests during package build
+	@echo "Skipping tests"

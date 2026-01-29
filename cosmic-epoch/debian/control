@@ -1,0 +1,292 @@
+Source: cosmic-epoch
+Section: x11
+Priority: optional
+Maintainer: System76 <info@system76.com>
+Build-Depends:
+  debhelper-compat (= 13),
+  cargo,
+  rustc (>= 1.75),
+  just,
+  cmake,
+  make,
+  pkg-config,
+  libwayland-dev,
+  libxkbcommon-dev,
+  libinput-dev,
+  libseat-dev,
+  libsystemd-dev,
+  libudev-dev,
+  libdbus-1-dev,
+  libdisplay-info-dev,
+  libflatpak-dev,
+  libglvnd-dev,
+  libgstreamer1.0-dev,
+  libgstreamer-plugins-base1.0-dev,
+  libpam0g-dev,
+  libpixman-1-dev,
+  libssl-dev,
+  libclang-dev,
+  libexpat1-dev,
+  libfontconfig-dev,
+  libfreetype-dev,
+  libgbm-dev,
+  libpipewire-0.3-dev,
+  libpulse-dev,
+  libegl1-mesa-dev,
+  libxcb1-dev,
+  lld,
+  mold,
+  nasm,
+Standards-Version: 4.6.2
+Homepage: https://github.com/pop-os/cosmic-epoch
+Vcs-Git: https://github.com/pop-os/cosmic-epoch.git
+Vcs-Browser: https://github.com/pop-os/cosmic-epoch
+Rules-Requires-Root: no
+
+Package: cosmic-epoch
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  cosmic-session (= ${binary:Version}),
+  cosmic-comp (= ${binary:Version}),
+  cosmic-panel (= ${binary:Version}),
+  cosmic-applets (= ${binary:Version}),
+  cosmic-applibrary (= ${binary:Version}),
+  cosmic-bg (= ${binary:Version}),
+  cosmic-edit (= ${binary:Version}),
+  cosmic-files (= ${binary:Version}),
+  cosmic-greeter (= ${binary:Version}),
+  cosmic-icons (= ${binary:Version}),
+  cosmic-idle (= ${binary:Version}),
+  cosmic-initial-setup (= ${binary:Version}),
+  cosmic-launcher (= ${binary:Version}),
+  cosmic-notifications (= ${binary:Version}),
+  cosmic-osd (= ${binary:Version}),
+  cosmic-player (= ${binary:Version}),
+  cosmic-randr (= ${binary:Version}),
+  cosmic-screenshot (= ${binary:Version}),
+  cosmic-settings (= ${binary:Version}),
+  cosmic-settings-daemon (= ${binary:Version}),
+  cosmic-store (= ${binary:Version}),
+  cosmic-term (= ${binary:Version}),
+  cosmic-wallpapers (= ${binary:Version}),
+  cosmic-workspaces-epoch (= ${binary:Version}),
+  xdg-desktop-portal-cosmic (= ${binary:Version}),
+  pop-launcher (= ${binary:Version}),
+Description: COSMIC Desktop Environment (metapackage)
+ COSMIC is a desktop environment offering performance, efficiency, and
+ personalization to empower a wide variety of use cases.
+ .
+ This metapackage installs the complete COSMIC desktop environment.
+
+Package: cosmic-session
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Desktop Session Manager
+ Session manager for the COSMIC desktop environment.
+
+Package: cosmic-comp
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+  libegl1,
+  libwayland-server0,
+Recommends:
+  cosmic-session,
+  libgl1-mesa-dri,
+Description: COSMIC Wayland Compositor
+ Wayland compositor for the COSMIC desktop environment.
+
+Package: cosmic-panel
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Desktop Panel
+ Panel component for the COSMIC desktop environment.
+
+Package: cosmic-applets
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Desktop Applets
+ System applets for the COSMIC desktop environment including audio,
+ battery, bluetooth, network, notifications, power, time, and workspaces.
+
+Package: cosmic-applibrary
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Application Library
+ Application library and launcher for the COSMIC desktop environment.
+
+Package: cosmic-bg
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Background Manager
+ Background and wallpaper manager for the COSMIC desktop environment.
+
+Package: cosmic-edit
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Text Editor
+ Modern text editor for the COSMIC desktop environment.
+
+Package: cosmic-files
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC File Manager
+ File manager for the COSMIC desktop environment.
+
+Package: cosmic-greeter
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Display Manager Greeter
+ Login greeter for the COSMIC desktop environment.
+
+Package: cosmic-icons
+Architecture: all
+Depends:
+  ${misc:Depends},
+Description: COSMIC Icon Theme
+ Icon theme for the COSMIC desktop environment.
+
+Package: cosmic-idle
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Idle Manager
+ Idle and screen lock manager for the COSMIC desktop environment.
+
+Package: cosmic-initial-setup
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Initial Setup Wizard
+ First-time setup wizard for the COSMIC desktop environment.
+
+Package: cosmic-launcher
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Application Launcher
+ Application launcher for the COSMIC desktop environment.
+
+Package: cosmic-notifications
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Notification Daemon
+ Notification daemon for the COSMIC desktop environment.
+
+Package: cosmic-osd
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC On-Screen Display
+ On-screen display for volume, brightness, and other system notifications.
+
+Package: cosmic-player
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Media Player
+ Media player for the COSMIC desktop environment.
+
+Package: cosmic-randr
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Display Configuration Tool
+ Display configuration utility for the COSMIC desktop environment.
+
+Package: cosmic-screenshot
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Screenshot Tool
+ Screenshot utility for the COSMIC desktop environment.
+
+Package: cosmic-settings
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Settings Application
+ Settings application for the COSMIC desktop environment.
+
+Package: cosmic-settings-daemon
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Settings Daemon
+ Background daemon for managing system settings in COSMIC.
+
+Package: cosmic-store
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Application Store
+ Application store for the COSMIC desktop environment.
+
+Package: cosmic-term
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Terminal Emulator
+ Terminal emulator for the COSMIC desktop environment.
+
+Package: cosmic-wallpapers
+Architecture: all
+Depends:
+  ${misc:Depends},
+Description: COSMIC Wallpapers
+ Default wallpapers for the COSMIC desktop environment.
+
+Package: cosmic-workspaces-epoch
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: COSMIC Workspace Manager
+ Workspace manager for the COSMIC desktop environment.
+
+Package: xdg-desktop-portal-cosmic
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: XDG Desktop Portal for COSMIC
+ XDG Desktop Portal backend for the COSMIC desktop environment.
+
+Package: pop-launcher
+Architecture: amd64 arm64
+Depends:
+  ${misc:Depends},
+  ${shlibs:Depends},
+Description: Pop Launcher
+ Modular launcher library used by COSMIC.

@@ -1,0 +1,138 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: cosmic-epoch
+Upstream-Contact: System76 <info@system76.com>
+Source: https://github.com/pop-os/cosmic-epoch
+
+Files: *
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-applets/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-applibrary/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-bg/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-comp/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-edit/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-files/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-greeter/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-icons/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0 or CC-BY-SA-4.0
+
+Files: cosmic-idle/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-initial-setup/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-launcher/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-notifications/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-osd/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-panel/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-player/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-randr/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-screenshot/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-session/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-settings/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-settings-daemon/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-store/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-term/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: cosmic-wallpapers/*
+Copyright: 2022-2026 System76, Inc.
+License: CC-BY-SA-4.0
+
+Files: cosmic-workspaces-epoch/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: xdg-desktop-portal-cosmic/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+Files: pop-launcher/*
+Copyright: 2022-2026 System76, Inc.
+License: GPL-3.0
+
+License: GPL-3.0
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, version 3 of the License.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 3 can be found in "/usr/share/common-licenses/GPL-3".
+
+License: CC-BY-SA-4.0
+ Creative Commons Attribution-ShareAlike 4.0 International Public License
+ .
+ By exercising the Licensed Rights (defined below), You accept and agree
+ to be bound by the terms and conditions of this Creative Commons
+ Attribution-ShareAlike 4.0 International Public License ("Public License").
+ .
+ The full license text can be found at:
+ https://creativecommons.org/licenses/by-sa/4.0/legalcode

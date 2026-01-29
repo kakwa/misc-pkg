@@ -1,0 +1,8 @@
+cosmic-epoch (1.0.4-1) UNRELEASED; urgency=medium
+
+  * New upstream release 1.0.4
+  * Complete COSMIC desktop environment package
+  * Use wget_sum for downloading submodules with checksums
+  * Switch to 3.0 (quilt) source format
+
+ -- System76 <info@system76.com>  Thu, 30 Jan 2026 00:00:00 +0000

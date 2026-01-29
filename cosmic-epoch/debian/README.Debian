@@ -1,0 +1,107 @@
+cosmic-epoch for Debian
+========================
+
+COSMIC Desktop Environment Packaging
+-------------------------------------
+
+This package provides the complete COSMIC desktop environment for Debian-based
+systems. COSMIC is developed by System76 and is the next-generation desktop
+environment for Pop!_OS.
+
+Installation
+------------
+
+To install the complete COSMIC desktop environment:
+
+    sudo apt install cosmic-epoch
+
+This metapackage will install all COSMIC components.
+
+Individual Components
+---------------------
+
+You can also install individual COSMIC applications without the full desktop:
+
+    sudo apt install cosmic-edit      # Text editor
+    sudo apt install cosmic-files     # File manager
+    sudo apt install cosmic-term      # Terminal emulator
+    sudo apt install cosmic-store     # Application store
+    sudo apt install cosmic-player    # Media player
+
+Switching to COSMIC
+-------------------
+
+After installation:
+
+1. Log out of your current session
+2. Click on your username at the login screen
+3. Click the gear/sprocket icon (usually bottom-right)
+4. Select "COSMIC" from the desktop environment list
+5. Log in
+
+Requirements
+------------
+
+- Wayland support is required (COSMIC does not support X11)
+- Modern GPU with OpenGL/Vulkan support recommended
+- At least 4GB RAM recommended
+
+Wayland Configuration
+---------------------
+
+If you're using GDM, ensure Wayland is enabled:
+
+    sudo nano /etc/gdm3/custom.conf
+
+Set:
+    WaylandEnable=true
+
+Then restart GDM:
+    sudo systemctl restart gdm3
+
+NVIDIA Users
+------------
+
+For NVIDIA users, you may need to enable Wayland support:
+
+1. Install NVIDIA drivers (version 470 or newer recommended)
+2. Enable modesetting:
+   Add "nvidia-drm.modeset=1" to GRUB_CMDLINE_LINUX in /etc/default/grub
+3. Update GRUB: sudo update-grub
+4. Reboot
+
+Troubleshooting
+---------------
+
+If COSMIC doesn't appear in your login manager:
+- Ensure cosmic-session is installed
+- Check /usr/share/wayland-sessions/ for cosmic.desktop
+- Verify your display manager supports Wayland sessions
+
+For issues with specific components:
+- Check logs: journalctl -xe
+- COSMIC logs: ~/.local/share/cosmic/
+
+Reporting Bugs
+--------------
+
+Upstream bugs: https://github.com/pop-os/cosmic-epoch/issues
+Debian packaging bugs: Use reportbug cosmic-epoch
+
+Configuration
+-------------
+
+COSMIC configuration files are stored in:
+- System: /etc/cosmic/
+- User: ~/.config/cosmic/
+
+Themes and customization can be managed through cosmic-settings.
+
+Additional Resources
+--------------------
+
+- Homepage: https://system76.com/cosmic
+- Documentation: https://github.com/pop-os/cosmic-epoch
+- Community: https://chat.pop-os.org/
+
+ -- System76 <info@system76.com>  Mon, 27 Jan 2026 00:00:00 +0000

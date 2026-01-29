@@ -1,0 +1,96 @@
+COSMIC Epoch Debian Packaging
+==============================
+
+This package contains the complete COSMIC desktop environment, which is
+composed of multiple components downloaded as separate tarballs.
+
+Source Package Format
+---------------------
+
+This package uses the 3.0 (quilt) source format. Unlike git submodules,
+all components are downloaded as tarballs with SHA-512 checksum verification
+using the wget_sum.sh script.
+
+Building from Source
+--------------------
+
+1. Generate the source tarball with all components:
+   make manifest    # Downloads and verifies all components
+   make deb         # Builds the Debian packages
+
+2. Or build directly:
+   dpkg-buildpackage -us -uc -b
+
+3. The Makefile will automatically:
+   - Download the main COSMIC Epoch source
+   - Download all 26 component tarballs
+   - Verify checksums against MANIFEST file
+   - Extract everything into the source directory
+   - Create the final source tarball
+
+Components
+----------
+
+This package includes the following components (downloaded separately):
+- cosmic-applets
+- cosmic-applibrary
+- cosmic-bg
+- cosmic-comp
+- cosmic-edit
+- cosmic-files
+- cosmic-greeter
+- cosmic-icons
+- cosmic-idle
+- cosmic-initial-setup
+- cosmic-launcher
+- cosmic-notifications
+- cosmic-osd
+- cosmic-panel
+- cosmic-player
+- cosmic-randr
+- cosmic-screenshot
+- cosmic-session
+- cosmic-settings
+- cosmic-settings-daemon
+- cosmic-store
+- cosmic-term
+- cosmic-wallpapers
+- cosmic-workspaces-epoch
+- xdg-desktop-portal-cosmic
+- pop-launcher
+
+Each component is built and packaged as a separate binary package.
+
+Checksum Verification
+----------------------
+
+The MANIFEST file contains SHA-512 checksums for all downloaded tarballs.
+This ensures source integrity and reproducibility.
+
+To regenerate the MANIFEST file:
+   make reset_manifest
+   make manifest
+
+Dependencies
+------------
+
+Build dependencies include:
+- Rust toolchain (rustc >= 1.75, cargo)
+- just (command runner)
+- Various development libraries (see debian/control)
+- wget (for downloading sources)
+
+The build process uses:
+- Makefile: Downloads and prepares sources with checksum verification
+- justfile: Coordinates building all components
+- debian/rules: Debian package build orchestration
+
+Notes
+-----
+
+- This is a quilt-format Debian package (format 3.0 quilt)
+- All components are downloaded and verified automatically
+- No git submodules are used - everything is tarball-based
+- The package uses vendored Rust dependencies where applicable
+- Build time can be significant due to the number of Rust components
+- Checksums ensure reproducible builds
