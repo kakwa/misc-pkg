@@ -1,0 +1,27 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Go module build
+export GOPROXY = https://proxy.golang.org
+export GOSUMDB = sum.golang.org
+export GO111MODULE = on
+export CGO_ENABLED = 0
+
+DEST = $$(pwd)/debian/@NAME@
+
+# For chroot builds without $HOME
+ifeq ($(HOME),/nonexistent)
+export HOME = /build
+endif
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	GOTOOLCHAIN=auto go build -ldflags="-s -w" -tags "grpcnotrace" -o talosctl ./cmd/talosctl
+
+override_dh_auto_install:
+	mkdir -p $(DEST)/usr/bin
+	install -m 755 talosctl $(DEST)/usr/bin/talosctl
+
+override_dh_auto_test:
