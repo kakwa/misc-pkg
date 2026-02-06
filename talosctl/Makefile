@@ -23,7 +23,7 @@ LICENSE = MPL-2.0
 NVD_CPE_PATTERN=cpe:2.3:o:siderolabs:talos_linux:*
 
 # Distribution versions to skip
-#SKIP=<=:deb:8 <=:el:6 <=:fc:29 <=:ubu:18.4
+SKIP=<=:deb:12 <=:el:7 <=:fc:29 <=:ubu:24.4
 
 # Allow network for Go module download
 COWBUILD_BUILD_ADDITIONAL_ARGS = --use-network yes
