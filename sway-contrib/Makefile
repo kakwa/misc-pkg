@@ -2,16 +2,16 @@
 NAME = sway-contrib
 
 # Version
-VERSION = 1.11
+VERSION = 9999.1.11
 
 # Revision number
 RELEASE = 1
 
 # URL of the project (upstream GitHub)
-URL = https://github.com/OctopusET/sway-contrib
+URL = https://github.com/kakwa/sway-contrib
 
 # Source archive download URL
-URL_SRC = https://github.com/OctopusET/sway-contrib/archive/refs/tags/$(VERSION).tar.gz
+URL_SRC = $(URL)/archive/refs/tags/$(VERSION).tar.gz
 
 # Short summary of what the package provides
 SUMMARY = User-contributed scripts for the Sway window manager
