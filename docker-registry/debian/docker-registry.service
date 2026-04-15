@@ -1,0 +1,16 @@
+[Unit]
+Description=OCI Distribution Registry
+Documentation=https://github.com/distribution/distribution/blob/main/docs/configuration.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=registry
+Group=registry
+ExecStart=/usr/bin/registry serve /etc/docker/registry/config.yml
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

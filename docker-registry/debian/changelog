@@ -1,0 +1,5 @@
+docker-registry (3.1.0-1) unstable; urgency=low
+
+  * Initial packaging of Distribution registry 3.1.0 (built from source).
+
+ -- @MAINTAINER@ <@MAINTAINER_EMAIL@>  Tue, 15 Apr 2026 12:00:00 +0000
