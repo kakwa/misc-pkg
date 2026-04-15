@@ -26,6 +26,8 @@ NVD_CPE_PATTERN = cpe:2.3:a:docker:registry:*:*:*:*:*:*:*:*
 COWBUILD_BUILD_ADDITIONAL_ARGS = --use-network yes
 MOCK_BUILD_ADDITIONAL_ARGS = --enable-network
 
+SKIP=<=:deb:12 >=:el:0 >=:fc:0 >=:ubu:0.0
+
 ###############################################################################
 # Source: upstream release tarball from GitHub
 ###############################################################################
