@@ -9,6 +9,7 @@ Build-Depends:
   just,
   cmake,
   make,
+  git,
   pkg-config,
   libwayland-dev,
   libxkbcommon-dev,
