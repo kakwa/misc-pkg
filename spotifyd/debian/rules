@@ -30,6 +30,12 @@ override_dh_auto_clean:
 	dh_auto_clean
 
 override_dh_auto_configure:
+	# Remove Cargo.lock to allow cargo to resolve compatible dependencies
+	rm -f Cargo.lock
+	# Fetch dependencies first
+	cargo fetch
+	# Replace librespot-core build.rs to avoid vergen issues
+	find $(CARGO_HOME)/registry/src -name "librespot-core-*" -type d -exec sh -c 'cp debian/librespot-core-build.rs "$$1"/build.rs' _ {} \;
 
 override_dh_auto_install:
 	cargo install --path ./ --root debian/$(BIN_NAME)/usr/

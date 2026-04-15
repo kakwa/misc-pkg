@@ -1,0 +1,41 @@
+diff -Naur spotifyd-f31ca1b7549291713a73ff6a10fc83af9a27dbfc.orig/Cargo.toml spotifyd-f31ca1b7549291713a73ff6a10fc83af9a27dbfc/Cargo.toml
+--- spotifyd-f31ca1b7549291713a73ff6a10fc83af9a27dbfc.orig/Cargo.toml	2026-01-16 19:54:11.835363026 +0100
++++ spotifyd-f31ca1b7549291713a73ff6a10fc83af9a27dbfc/Cargo.toml	2026-01-16 19:54:17.238444071 +0100
+@@ -15,7 +15,7 @@
+ dbus = { version = "0.9", optional = true }
+ dbus-tokio = { version = "0.7.3", optional = true }
+ dbus-crossroads = { version = "0.5.0", optional = true }
+-fern = { version = "0.7.0", features = ["syslog-7", "colored"] }
++fern = { version = "0.7.0", features = ["syslog-7"] }
+ futures = "0.3.15"
+ gethostname = "1.0.0"
+ hex = "0.4"
+diff -Naur spotifyd-f31ca1b7549291713a73ff6a10fc83af9a27dbfc.orig/src/main.rs spotifyd-f31ca1b7549291713a73ff6a10fc83af9a27dbfc/src/main.rs
+--- spotifyd-f31ca1b7549291713a73ff6a10fc83af9a27dbfc.orig/src/main.rs	2026-01-16 19:54:11.835879756 +0100
++++ spotifyd-f31ca1b7549291713a73ff6a10fc83af9a27dbfc/src/main.rs	2026-01-16 19:54:17.244096741 +0100
+@@ -6,7 +6,6 @@
+ use config::ExecutionMode;
+ #[cfg(unix)]
+ use daemonize::Daemonize;
+-use fern::colors::ColoredLevelConfig;
+ use log::{LevelFilter, info, trace};
+ use oauth::run_oauth;
+ #[cfg(target_os = "openbsd")]
+@@ -48,7 +47,7 @@
+ 
+     let logger = match log_target {
+         LogTarget::Terminal => {
+-            let colors = ColoredLevelConfig::new();
++            
+             logger
+                 .format(move |out, message, record| {
+                     let target = if verbose > 0 {
+@@ -58,7 +57,7 @@
+                     };
+                     out.finish(format_args!(
+                         "[{}{}] {}",
+-                        colors.color(record.level()),
++                        record.level(),
+                         target,
+                         message
+                     ))

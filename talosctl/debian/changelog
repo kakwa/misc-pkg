@@ -1,0 +1,5 @@
+talosctl (1.12.2-1) unstable; urgency=low
+
+  * Package talosctl 1.12.2 from Sidero Labs Talos (pre-built binaries).
+
+ -- @MAINTAINER@ <@MAINTAINER_EMAIL@>  Fri, 06 Feb 2026 12:00:00 +0000

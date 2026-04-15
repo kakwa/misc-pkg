@@ -1,0 +1,17 @@
+Source: @NAME@
+Section: admin
+Priority: extra
+Maintainer: @MAINTAINER@ <@MAINTAINER_EMAIL@>
+Build-Depends:
+ debhelper (>= 11~),
+ make,
+ golang-go (>= 2:1.22),
+ golang-src (>= 2:1.22)
+Standards-Version: 4.6.2
+Homepage: @URL@
+
+Package: @NAME@
+Architecture: any
+Depends: ${misc:Depends}
+Description: @SUMMARY@
+ @DESCRIPTION@
