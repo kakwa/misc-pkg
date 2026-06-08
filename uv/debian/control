@@ -1,0 +1,18 @@
+Source: @NAME@
+Section: misc
+Priority: extra
+Maintainer: @MAINTAINER@ <@MAINTAINER_EMAIL@>
+Build-Depends:
+ debhelper (>= 7.0.50~),
+ rustup,
+ pkg-config,
+ libssl-dev,
+ help2man
+Standards-Version: 3.8.4
+Homepage: @URL@
+
+Package: @NAME@
+Architecture: any
+Depends: ${misc:Depends}
+Description: @SUMMARY@
+ @DESCRIPTION@
