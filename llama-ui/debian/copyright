@@ -1,0 +1,25 @@
+This work was packaged for Debian by:
+
+    @MAINTAINER@ <@MAINTAINER_EMAIL@> on Tue, 29 Jan 2013 10:50:50 +0000
+
+It was downloaded from:
+
+    @URL@
+
+Upstream Author(s):
+
+    See upstream url
+
+Copyright:
+
+    See upstream url
+
+License:
+
+    @LICENSE@
+
+The Debian packaging is:
+
+    Copyright (C) 2015 @MAINTAINER@ <@MAINTAINER_EMAIL@>
+
+Same as upstream

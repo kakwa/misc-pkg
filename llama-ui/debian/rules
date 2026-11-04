@@ -1,0 +1,29 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+DEST = $$(pwd)/debian/@NAME@
+
+UI_DIR = tools/ui
+
+# For chroot builds without $HOME
+ifeq ($(HOME),/nonexistent)
+export HOME = /build
+endif
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	cd $(UI_DIR) && \
+	npm ci && \
+	npm run build
+
+override_dh_auto_install:
+	mkdir -p $(DEST)/usr/share/@NAME@
+	cp -r --preserve=mode,timestamps $(UI_DIR)/dist/. $(DEST)/usr/share/@NAME@/
+
+# Upstream ships a top-level Makefile that is only a stub pointing to
+# CMake, so 'make distclean' fails. We don't use make at all.
+override_dh_auto_clean:
+
+override_dh_auto_test:
