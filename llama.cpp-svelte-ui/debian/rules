@@ -22,7 +22,9 @@ override_dh_auto_install:
 	mkdir -p $(DEST)/usr/share/@NAME@
 	cp -r --preserve=mode,timestamps $(UI_DIR)/dist/. $(DEST)/usr/share/@NAME@/
 	install -d -m 755 $(DEST)/etc/nginx/sites-available
-	install -m 644 debian/@NAME@.conf $(DEST)/etc/nginx/sites-available/@NAME@.conf
+	# Use the literal filename: buildenv's sed only replaces the first
+	# @NAME@ per line, so a second placeholder would survive unexpanded.
+	install -m 644 debian/llama.cpp-svelte-ui.conf $(DEST)/etc/nginx/sites-available/llama.cpp-svelte-ui.conf
 
 # Upstream ships a top-level Makefile that is only a stub pointing to
 # CMake, so 'make distclean' fails. We don't use make at all.
