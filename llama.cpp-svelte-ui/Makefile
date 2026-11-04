@@ -27,7 +27,8 @@ LICENSE=MIT
 #   <dist>:    the distribution code name (examples: 'deb', 'el', 'fc')
 #   <version>: the version number to ignore
 #
-SKIP=>=:el:0 >=:fc:0
+SKIP=>=:el:0 >=:fc:0 >=:ubu:0 <=:deb:13
+
 
 # Allow network inside chroot/mock for npm install
 COWBUILD_BUILD_ADDITIONAL_ARGS=--use-network yes
