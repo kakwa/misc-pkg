@@ -1,5 +1,5 @@
 # Name of the package
-NAME = llama-ui
+NAME = llama.cpp-svelte-ui
 
 # Version
 VERSION = 0.8.0

@@ -21,6 +21,8 @@ override_dh_auto_build:
 override_dh_auto_install:
 	mkdir -p $(DEST)/usr/share/@NAME@
 	cp -r --preserve=mode,timestamps $(UI_DIR)/dist/. $(DEST)/usr/share/@NAME@/
+	install -d -m 755 $(DEST)/etc/nginx/sites-available
+	install -m 644 debian/@NAME@.conf $(DEST)/etc/nginx/sites-available/@NAME@.conf
 
 # Upstream ships a top-level Makefile that is only a stub pointing to
 # CMake, so 'make distclean' fails. We don't use make at all.
