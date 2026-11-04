@@ -166,10 +166,10 @@ $(BUILD_DIR)/pkg_built_chroot.deb.$(DIST): $(DEB_PREPARE) | $(DIRECTORIES) $(IND
 		$(COWBUILDER_BUILD_ARGS) \
 		$(BUILD_DIR)/deb.$(DIST)/*.dsc; \
 	if [ $$? -ne 0 ]; then \
-		touch $(BUILD_DIR)/failure.chroot.$(DIST); \
+		touch $(BUILD_DIR)/failure.chroot.$(DIST).$(ARCH); \
 		exit 1; \
 	else \
-		rm -f $(BUILD_DIR)/failure.chroot.$(DIST); \
+		rm -f $(BUILD_DIR)/failure.chroot.$(DIST).$(ARCH); \
 	fi
 	
 	# Move build artifacts to appropriate directories

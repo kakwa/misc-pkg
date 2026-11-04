@@ -104,10 +104,10 @@ $(BUILD_DIR)/pkg_built.src.rpm.$(DIST): $(SOURCE_ARCHIVE) $(RPM_ARCHIVE) $(RPM_S
 $(BUILD_DIR)/pkg_built_chroot.rpm.$(DIST): $(BUILD_DIR)/pkg_built.src.rpm.$(DIST)
 	@$(MOCK_CMD); \
 	if [ $$? -ne 0 ]; then \
-		touch $(BUILD_DIR)/failure.rpm.chroot.$(DIST); \
+		touch $(BUILD_DIR)/failure.rpm.chroot.$(DIST).$(ARCH); \
 		exit 1; \
 	else \
-		rm -f $(BUILD_DIR)/failure.rpm.chroot.$(DIST); \
+		rm -f $(BUILD_DIR)/failure.rpm.chroot.$(DIST).$(ARCH); \
 	fi
 	@find $(INDIVIDUAL_RPM_LOCAL_REPO_PATH)/results/$(DIST_FULL)-$(ARCH)/$$(rpm -qp $(CURDIR)/$(BUILD_DIR)/rpm.$(DIST)/SRPMS/*$(VERSION)-$(RELEASE)*.rpm \
 		--queryformat "%{NAME}-%{VERSION}-%{RELEASE}") \

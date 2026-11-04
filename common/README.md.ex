@@ -19,16 +19,22 @@ export SUDO=sudo
 ARCH=$(dpkg --print-architecture)
 
 # Add the GPG key
+${SUDO} install -dm755 /etc/apt/keyrings
 wget -qO - https://@ORG@.github.io/@REPO@/GPG-KEY.pub | \
-    gpg --dearmor | ${SUDO} tee /etc/apt/trusted.gpg.d/@REPO@.gpg >/dev/null
+    ${SUDO} tee /etc/apt/keyrings/@REPO@.asc >/dev/null
 
 # Add the repository
-echo "deb [arch=${ARCH}] \
-https://@ORG@.github.io/@REPO@/deb.${VERSION_CODENAME}.${ARCH}/ \
-${VERSION_CODENAME} main" | ${SUDO} tee /etc/apt/sources.list.d/@REPO@.list
+cat << EOF | ${SUDO} tee /etc/apt/sources.list.d/@REPO@.sources
+Types: deb
+URIs: https://@ORG@.github.io/@REPO@/deb.${VERSION_CODENAME}.${ARCH}/
+Suites: ${VERSION_CODENAME}
+Components: main
+Architectures: ${ARCH}
+Signed-By: /etc/apt/keyrings/@REPO@.asc
+EOF
 
 # update
-apt update
+${SUDO} apt update
 ```
 
 ## RHEL/Rocky/Fedora

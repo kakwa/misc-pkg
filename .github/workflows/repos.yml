@@ -82,7 +82,7 @@ jobs:
           if [ "${{ matrix.target }}" == "rpm" ];then echo "deb [arch=$(dpkg --print-architecture)] https://kakwa.github.io/debian-rpm-build-tools/deb.${VERSION_CODENAME}.$(dpkg --print-architecture)/ ${VERSION_CODENAME} main"  | sudo tee /etc/apt/sources.list.d/debian-rpm-build-tools.list ;fi
           sudo apt update
           sudo apt install -y make debhelper reprepro cowbuilder wget
-          sudo apt install -y binfmt-support qemu-utils qemu-user-static qemu-system-arm qemu-system-misc qemu-system-ppc qemu-system-s390x
+          sudo apt install -y binfmt-support qemu-utils qemu-user-binfmt qemu-system-arm qemu-system-misc qemu-system-ppc qemu-system-s390x
           sudo apt install -y debian-archive-keyring debian-keyring debian-ports-archive-keyring ubuntu-keyring
           if [ "${{ matrix.target }}" == "rpm" ];then sudo apt install -y mock createrepo-c rpm dnf gnupg2; fi
 

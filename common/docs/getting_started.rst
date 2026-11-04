@@ -10,7 +10,7 @@ Debian/Ubuntu:
 .. sourcecode:: bash
 
     # Adapt with the CPU architectures you are targetting
-    apt install binfmt-support qemu-utils qemu-user-static \
+    apt install binfmt-support qemu-utils qemu-user-binfmt \
         qemu-system-arm qemu-system-misc qemu-system-ppc qemu-system-s390x
 
 RHEL/Rocky/Fedora:
