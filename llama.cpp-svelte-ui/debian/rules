@@ -14,8 +14,12 @@ endif
 	dh $@
 
 override_dh_auto_build:
+	# npm >= 12 defaults allow-remote to "none" and refuses to fetch URL
+	# dependencies (EALLOWREMOTE). Upstream's package.json declares
+	# llama-brand as a direct devDependency pointing at a codeload.github.com
+	# tarball, so allow remote sources declared by the root package.
 	cd $(UI_DIR) && \
-	npm ci && \
+	npm ci --allow-remote=root && \
 	npm run build
 
 override_dh_auto_install:
